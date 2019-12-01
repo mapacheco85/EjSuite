@@ -1,0 +1,1465 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{17A72A72-6DF8-4D6D-ACD9-6517C4C48551}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <AssemblyName>EjSuite.Modules.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <UpgradeBackupLocation />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DocumentationFile>EjSuite.Modules.UI.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DocumentationFile>EjSuite.Modules.UI.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="AjaxControlToolkit, Version=18.1.1.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.76.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="dotnetCHARTING, Version=8.4.6010.22078, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\dotnetCHARTING.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke, Version=9.2.2.178, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Flan.Controls, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Flan.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Web.jQuery.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.Web.jQuery.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.Web.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.Web.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.Documents.Core.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.Documents.Core.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.Documents.Excel.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.Documents.Excel.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.Documents.IO.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.Documents.IO.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.Documents.Reports.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.Documents.Reports.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.Documents.Word.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.Documents.Word.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.Misc.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.Misc.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.Shared.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.Shared.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.UltraWebCalcManager.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.UltraWebCalcManager.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.UltraWebChart.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.UltraWebChart.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.UltraWebGauge.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.UltraWebGauge.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.WebDataInput.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.WebDataInput.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.WebHtmlEditor.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.WebHtmlEditor.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.WebResizingExtender.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.WebResizingExtender.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.WebSchedule.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.WebSchedule.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.WebScheduleDataProvider.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.WebScheduleDataProvider.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics4.WebUI.WebSpellChecker.v13.1, Version=13.1.20131.1012, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <HintPath>..\..\bin\Infragistics4.WebUI.WebSpellChecker.v13.1.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=4.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca" />
+    <Reference Include="LumiSoft.Net, Version=2.0.2672.26765, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="SubSonic, Version=2.2.0.0, Culture=neutral, PublicKeyToken=eadb47849839a332, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions.Design" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="DotNetNuke" />
+    <Import Include="DotNetNuke.Common" />
+    <Import Include="DotNetNuke.Common.Utilities" />
+    <Import Include="DotNetNuke.Data" />
+    <Import Include="DotNetNuke.Entities" />
+    <Import Include="DotNetNuke.Entities.Tabs" />
+    <Import Include="DotNetNuke.Framework" />
+    <Import Include="DotNetNuke.Modules" />
+    <Import Include="DotNetNuke.Security" />
+    <Import Include="DotNetNuke.Services" />
+    <Import Include="DotNetNuke.Services.Exceptions" />
+    <Import Include="DotNetNuke.Services.Localization" />
+    <Import Include="DotNetNuke.UI" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\Classes\GridViewExportUtil.vb" />
+    <Compile Include="Components\Classes\EjSuite.vb" />
+    <Compile Include="Components\Classes\ReportServerCredentials.vb" />
+    <Compile Include="Components\DAL\AllStructs.vb" />
+    <Compile Include="Components\DAL\Almacen.vb" />
+    <Compile Include="Components\DAL\AlmacenController.vb" />
+    <Compile Include="Components\DAL\Beneficiario.vb" />
+    <Compile Include="Components\DAL\BeneficiarioController.vb" />
+    <Compile Include="Components\DAL\Catalogo.vb" />
+    <Compile Include="Components\DAL\CatalogoController.vb" />
+    <Compile Include="Components\DAL\Cliente.vb" />
+    <Compile Include="Components\DAL\ClienteController.vb" />
+    <Compile Include="Components\DAL\Cotizacion.vb" />
+    <Compile Include="Components\DAL\CotizacionController.vb" />
+    <Compile Include="Components\DAL\CotizacionDetalle.vb" />
+    <Compile Include="Components\DAL\CotizacionDetalleController.vb" />
+    <Compile Include="Components\DAL\Detalle.vb" />
+    <Compile Include="Components\DAL\DetalleController.vb" />
+    <Compile Include="Components\DAL\Empleado.vb" />
+    <Compile Include="Components\DAL\EmpleadoController.vb" />
+    <Compile Include="Components\DAL\EmpleadoSucursal.vb" />
+    <Compile Include="Components\DAL\EmpleadoSucursalController.vb" />
+    <Compile Include="Components\DAL\Empresa.vb" />
+    <Compile Include="Components\DAL\EmpresaController.vb" />
+    <Compile Include="Components\DAL\ErrorX.vb" />
+    <Compile Include="Components\DAL\ErrorXController.vb" />
+    <Compile Include="Components\DAL\Estado.vb" />
+    <Compile Include="Components\DAL\EstadoController.vb" />
+    <Compile Include="Components\DAL\Factura.vb" />
+    <Compile Include="Components\DAL\FacturaController.vb" />
+    <Compile Include="Components\DAL\Grupo.vb" />
+    <Compile Include="Components\DAL\GrupoController.vb" />
+    <Compile Include="Components\DAL\GrupoProducto.vb" />
+    <Compile Include="Components\DAL\GrupoProductoController.vb" />
+    <Compile Include="Components\DAL\InformeCobranza.vb" />
+    <Compile Include="Components\DAL\InformeCobranzaController.vb" />
+    <Compile Include="Components\DAL\KardexInventario.vb" />
+    <Compile Include="Components\DAL\KardexInventarioController.vb" />
+    <Compile Include="Components\DAL\Leyenda.vb" />
+    <Compile Include="Components\DAL\LeyendaController.vb" />
+    <Compile Include="Components\DAL\ListadoProducto.vb" />
+    <Compile Include="Components\DAL\ListadoProductoController.vb" />
+    <Compile Include="Components\DAL\LogOperacione.vb" />
+    <Compile Include="Components\DAL\LogOperacioneController.vb" />
+    <Compile Include="Components\DAL\Lote.vb" />
+    <Compile Include="Components\DAL\LoteController.vb" />
+    <Compile Include="Components\DAL\MacroUnidade.vb" />
+    <Compile Include="Components\DAL\MacroUnidadeController.vb" />
+    <Compile Include="Components\DAL\Marca.vb" />
+    <Compile Include="Components\DAL\MarcaController.vb" />
+    <Compile Include="Components\DAL\Medida.vb" />
+    <Compile Include="Components\DAL\MedidaController.vb" />
+    <Compile Include="Components\DAL\NotaCredito.vb" />
+    <Compile Include="Components\DAL\NotaCreditoController.vb" />
+    <Compile Include="Components\DAL\NotaDebito.vb" />
+    <Compile Include="Components\DAL\NotaDebitoController.vb" />
+    <Compile Include="Components\DAL\Objetivo.vb" />
+    <Compile Include="Components\DAL\ObjetivoController.vb" />
+    <Compile Include="Components\DAL\ObjetivoDetalle.vb" />
+    <Compile Include="Components\DAL\ObjetivoDetalleController.vb" />
+    <Compile Include="Components\DAL\OrdenCompra.vb" />
+    <Compile Include="Components\DAL\OrdenCompraController.vb" />
+    <Compile Include="Components\DAL\OrdenCompraDetalle.vb" />
+    <Compile Include="Components\DAL\OrdenCompraDetalleController.vb" />
+    <Compile Include="Components\DAL\PagoCuentaXCobrar.vb" />
+    <Compile Include="Components\DAL\PagoCuentaXCobrarController.vb" />
+    <Compile Include="Components\DAL\Parametro.vb" />
+    <Compile Include="Components\DAL\ParametroController.vb" />
+    <Compile Include="Components\DAL\Producto.vb" />
+    <Compile Include="Components\DAL\ProductoController.vb" />
+    <Compile Include="Components\DAL\Proveedor.vb" />
+    <Compile Include="Components\DAL\ProveedorController.vb" />
+    <Compile Include="Components\DAL\Region.vb" />
+    <Compile Include="Components\DAL\RegionController.vb" />
+    <Compile Include="Components\DAL\SniDatum.vb" />
+    <Compile Include="Components\DAL\SniDatumController.vb" />
+    <Compile Include="Components\DAL\StoredProcedures.vb" />
+    <Compile Include="Components\DAL\Sucursal.vb" />
+    <Compile Include="Components\DAL\SucursalController.vb" />
+    <Compile Include="Components\DAL\VWBuscaProducto.vb" />
+    <Compile Include="Components\DAL\VWBuscaProductoCompra.vb" />
+    <Compile Include="Components\DAL\VwCuentasCliente.vb" />
+    <Compile Include="Components\DAL\Vwdatakardex.vb" />
+    <Compile Include="Components\DAL\VWDavinci.vb" />
+    <Compile Include="Components\DAL\VwDebe.vb" />
+    <Compile Include="Components\DAL\VwDeuda.vb" />
+    <Compile Include="Components\DAL\VwDeudas1.vb" />
+    <Compile Include="Components\DAL\VwDeudasReporte.vb" />
+    <Compile Include="Components\DAL\VwHaber.vb" />
+    <Compile Include="Components\DAL\VwPago.vb" />
+    <Compile Include="Components\DAL\VwProductoPedido.vb" />
+    <Compile Include="Components\DAL\VwReporteKardex.vb" />
+    <Compile Include="Components\DAL\VwRepVentasCliente.vb" />
+    <Compile Include="Components\DAL\VwRepVentasGTerapeutico.vb" />
+    <Compile Include="Components\DAL\VwRepVentasProducto.vb" />
+    <Compile Include="Components\DAL\VwVentasPorVendedor.vb" />
+    <Compile Include="Components\DAL\Zona.vb" />
+    <Compile Include="Components\DAL\ZonaController.vb" />
+    <Compile Include="Components\DAL\Zonas1.vb" />
+    <Compile Include="Components\DAL\Zonas1Controller.vb" />
+    <Compile Include="Components\Scheduler\InformationSchedule.vb" />
+    <Compile Include="Controls\AlmacenEmpleadoControl.ascx.designer.vb">
+      <DependentUpon>AlmacenEmpleadoControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AlmacenEmpleadoControl.ascx.vb">
+      <DependentUpon>AlmacenEmpleadoControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ClienteControl.ascx.designer.vb">
+      <DependentUpon>ClienteControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ClienteControl.ascx.vb">
+      <DependentUpon>ClienteControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ClienteControl1.ascx.designer.vb">
+      <DependentUpon>ClienteControl1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ClienteControl1.ascx.vb">
+      <DependentUpon>ClienteControl1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\DeudorControl.ascx.designer.vb">
+      <DependentUpon>DeudorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeudorControl.ascx.vb">
+      <DependentUpon>DeudorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\EmpleadoControl.ascx.designer.vb">
+      <DependentUpon>EmpleadoControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EmpleadoControl.ascx.vb">
+      <DependentUpon>EmpleadoControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\GrupoterapeuticoControl.ascx.designer.vb">
+      <DependentUpon>GrupoterapeuticoControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GrupoterapeuticoControl.ascx.vb">
+      <DependentUpon>GrupoterapeuticoControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ProductoControl.ascx.designer.vb">
+      <DependentUpon>ProductoControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProductoControl.ascx.vb">
+      <DependentUpon>ProductoControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ProductoVentaControl.ascx.designer.vb">
+      <DependentUpon>ProductoVentaControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProductoVentaControl.ascx.vb">
+      <DependentUpon>ProductoVentaControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ProveedorControl.ascx.designer.vb">
+      <DependentUpon>ProveedorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProveedorControl.ascx.vb">
+      <DependentUpon>ProveedorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\regionControl.ascx.designer.vb">
+      <DependentUpon>regionControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\regionControl.ascx.vb">
+      <DependentUpon>regionControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\sucursal1Control.ascx.designer.vb">
+      <DependentUpon>sucursal1Control.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\sucursal1Control.ascx.vb">
+      <DependentUpon>sucursal1Control.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\SucursalControl.ascx.designer.vb">
+      <DependentUpon>SucursalControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SucursalControl.ascx.vb">
+      <DependentUpon>SucursalControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\VendedorControl.ascx.designer.vb">
+      <DependentUpon>VendedorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VendedorControl.ascx.vb">
+      <DependentUpon>VendedorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ZonaControl.ascx.designer.vb">
+      <DependentUpon>ZonaControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ZonaControl.ascx.vb">
+      <DependentUpon>ZonaControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EjSuiteModuleSettingsBase.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="EjSuiteSettings.ascx.designer.vb">
+      <DependentUpon>EjSuiteSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EjSuiteSettings.ascx.vb">
+      <DependentUpon>EjSuiteSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EjSuiteView.ascx.designer.vb">
+      <DependentUpon>EjSuiteView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EjSuiteView.ascx.vb">
+      <DependentUpon>EjSuiteView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EjSuiteModuleBase.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\AlmacenEmpleadoControlSearch.ascx.designer.vb">
+      <DependentUpon>AlmacenEmpleadoControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\AlmacenEmpleadoControlSearch.ascx.vb">
+      <DependentUpon>AlmacenEmpleadoControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\BeneficiarioControlSearch.ascx.designer.vb">
+      <DependentUpon>BeneficiarioControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\BeneficiarioControlSearch.ascx.vb">
+      <DependentUpon>BeneficiarioControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ClienteControlSearch.ascx.designer.vb">
+      <DependentUpon>ClienteControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ClienteControlSearch.ascx.vb">
+      <DependentUpon>ClienteControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ClienteVendedorControl.ascx.designer.vb">
+      <DependentUpon>ClienteVendedorControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ClienteVendedorControl.ascx.vb">
+      <DependentUpon>ClienteVendedorControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\CodigoQR.ashx.vb">
+      <DependentUpon>CodigoQR.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\CotizacionControlSearch.ascx.designer.vb">
+      <DependentUpon>CotizacionControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\CotizacionControlSearch.ascx.vb">
+      <DependentUpon>CotizacionControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\CuentaCliente.ascx.designer.vb">
+      <DependentUpon>CuentaCliente.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\CuentaCliente.ascx.vb">
+      <DependentUpon>CuentaCliente.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\DeudorControlSearch.ascx.designer.vb">
+      <DependentUpon>DeudorControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\DeudorControlSearch.ascx.vb">
+      <DependentUpon>DeudorControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EmpleadoControlSearch.ascx.designer.vb">
+      <DependentUpon>EmpleadoControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EmpleadoControlSearch.ascx.vb">
+      <DependentUpon>EmpleadoControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\GrupoterapeuticoControlSearch.ascx.designer.vb">
+      <DependentUpon>GrupoterapeuticoControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\GrupoterapeuticoControlSearch.ascx.vb">
+      <DependentUpon>GrupoterapeuticoControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteClienteMora.ascx.designer.vb">
+      <DependentUpon>EjSuiteClienteMora.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteClienteMora.ascx.vb">
+      <DependentUpon>EjSuiteClienteMora.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteAjustePrecios.ascx.designer.vb">
+      <DependentUpon>EjSuiteAjustePrecios.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteAjustePrecios.ascx.vb">
+      <DependentUpon>EjSuiteAjustePrecios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteAjusteVentas.ascx.designer.vb">
+      <DependentUpon>EjSuiteAjusteVentas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteAjusteVentas.ascx.vb">
+      <DependentUpon>EjSuiteAjusteVentas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteAndroid.ascx.designer.vb">
+      <DependentUpon>EjSuiteAndroid.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteAndroid.ascx.vb">
+      <DependentUpon>EjSuiteAndroid.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteAsignaciones.ascx.designer.vb">
+      <DependentUpon>EjSuiteAsignaciones.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteAsignaciones.ascx.vb">
+      <DependentUpon>EjSuiteAsignaciones.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteBeneficiarios.ascx.designer.vb">
+      <DependentUpon>EjSuiteBeneficiarios.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteBeneficiarios.ascx.vb">
+      <DependentUpon>EjSuiteBeneficiarios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteBienvenido.ascx.designer.vb">
+      <DependentUpon>EjSuiteBienvenido.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteBienvenido.ascx.vb">
+      <DependentUpon>EjSuiteBienvenido.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteClientes.ascx.designer.vb">
+      <DependentUpon>EjSuiteClientes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteClientes.ascx.vb">
+      <DependentUpon>EjSuiteClientes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteComisiones.ascx.designer.vb">
+      <DependentUpon>EjSuiteComisiones.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteComisiones.ascx.vb">
+      <DependentUpon>EjSuiteComisiones.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteCotizacion.ascx.designer.vb">
+      <DependentUpon>EjSuiteCotizacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteCotizacion.ascx.vb">
+      <DependentUpon>EjSuiteCotizacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteDatosSni.ascx.designer.vb">
+      <DependentUpon>EjSuiteDatosSni.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteDatosSni.ascx.vb">
+      <DependentUpon>EjSuiteDatosSni.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteDeudamayormil1.ascx.designer.vb">
+      <DependentUpon>EjSuiteDeudamayormil1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteDeudamayormil1.ascx.vb">
+      <DependentUpon>EjSuiteDeudamayormil1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteDeudores.ascx.designer.vb">
+      <DependentUpon>EjSuiteDeudores.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteDeudores.ascx.vb">
+      <DependentUpon>EjSuiteDeudores.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteImportPedido.ascx.designer.vb">
+      <DependentUpon>EjSuiteImportPedido.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteImportPedido.ascx.vb">
+      <DependentUpon>EjSuiteImportPedido.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteImpuestos.ascx.designer.vb">
+      <DependentUpon>EjSuiteImpuestos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteImpuestos.ascx.vb">
+      <DependentUpon>EjSuiteImpuestos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteIngresos.ascx.designer.vb">
+      <DependentUpon>EjSuiteIngresos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteIngresos.ascx.vb">
+      <DependentUpon>EjSuiteIngresos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteKardex.ascx.designer.vb">
+      <DependentUpon>EjSuiteKardex.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteKardex.ascx.vb">
+      <DependentUpon>EjSuiteKardex.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteListaGrupos.ascx.designer.vb">
+      <DependentUpon>EjSuiteListaGrupos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteListaGrupos.ascx.vb">
+      <DependentUpon>EjSuiteListaGrupos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteObjetivos.ascx.designer.vb">
+      <DependentUpon>EjSuiteObjetivos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteObjetivos.ascx.vb">
+      <DependentUpon>EjSuiteObjetivos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePago1.ascx.designer.vb">
+      <DependentUpon>EjSuitePago1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePago1.ascx.vb">
+      <DependentUpon>EjSuitePago1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePedido.ascx.designer.vb">
+      <DependentUpon>EjSuitePedido.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePedido.ascx.vb">
+      <DependentUpon>EjSuitePedido.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePedidoFacturacion.ascx.designer.vb">
+      <DependentUpon>EjSuitePedidoFacturacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePedidoFacturacion.ascx.vb">
+      <DependentUpon>EjSuitePedidoFacturacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteProductos.ascx.designer.vb">
+      <DependentUpon>EjSuiteProductos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteProductos.ascx.vb">
+      <DependentUpon>EjSuiteProductos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteProveedores.ascx.designer.vb">
+      <DependentUpon>EjSuiteProveedores.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteProveedores.ascx.vb">
+      <DependentUpon>EjSuiteProveedores.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepDaVinci.ascx.designer.vb">
+      <DependentUpon>EjSuiteRepDaVinci.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepDaVinci.ascx.vb">
+      <DependentUpon>EjSuiteRepDaVinci.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepGeneral.ascx.designer.vb">
+      <DependentUpon>EjSuiteRepGeneral.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepGeneral.ascx.vb">
+      <DependentUpon>EjSuiteRepGeneral.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteReports3D.ascx.designer.vb">
+      <DependentUpon>EjSuiteReports3D.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteReports3D.ascx.vb">
+      <DependentUpon>EjSuiteReports3D.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepSucursal.ascx.designer.vb">
+      <DependentUpon>EjSuiteRepSucursal.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepSucursal.ascx.vb">
+      <DependentUpon>EjSuiteRepSucursal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepVendedores.ascx.designer.vb">
+      <DependentUpon>EjSuiteRepVendedores.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepVendedores.ascx.vb">
+      <DependentUpon>EjSuiteRepVendedores.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepVentas.ascx.designer.vb">
+      <DependentUpon>EjSuiteRepVentas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepVentas.ascx.vb">
+      <DependentUpon>EjSuiteRepVentas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteTotalCompraCliente1.ascx.designer.vb">
+      <DependentUpon>EjSuiteTotalCompraCliente1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteTotalCompraCliente1.ascx.vb">
+      <DependentUpon>EjSuiteTotalCompraCliente1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteTraspasos.ascx.designer.vb">
+      <DependentUpon>EjSuiteTraspasos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteTraspasos.ascx.vb">
+      <DependentUpon>EjSuiteTraspasos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteValeConsumo.ascx.designer.vb">
+      <DependentUpon>EjSuiteValeConsumo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteValeConsumo.ascx.vb">
+      <DependentUpon>EjSuiteValeConsumo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVencidos.ascx.designer.vb">
+      <DependentUpon>EjSuiteVencidos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVencidos.ascx.vb">
+      <DependentUpon>EjSuiteVencidos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVentaCliente1.ascx.designer.vb">
+      <DependentUpon>EjSuiteVentaCliente1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVentaCliente1.ascx.vb">
+      <DependentUpon>EjSuiteVentaCliente1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVentaPorVendedorProducto1.ascx.designer.vb">
+      <DependentUpon>EjSuiteVentaPorVendedorProducto1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVentaPorVendedorProducto1.ascx.vb">
+      <DependentUpon>EjSuiteVentaPorVendedorProducto1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVentasPorZona.ascx.designer.vb">
+      <DependentUpon>EjSuiteVentasPorZona.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVentasPorZona.ascx.vb">
+      <DependentUpon>EjSuiteVentasPorZona.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVentasPorZonas.ascx.designer.vb">
+      <DependentUpon>EjSuiteVentasPorZonas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVentasPorZonas.ascx.vb">
+      <DependentUpon>EjSuiteVentasPorZonas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVisitadores.ascx.designer.vb">
+      <DependentUpon>EjSuiteVisitadores.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteVisitadores.ascx.vb">
+      <DependentUpon>EjSuiteVisitadores.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteZonas.ascx.designer.vb">
+      <DependentUpon>EjSuiteZonas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteZonas.ascx.vb">
+      <DependentUpon>EjSuiteZonas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePagosCheque.ascx.designer.vb">
+      <DependentUpon>EjSuitePagosCheque.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePagosCheque.ascx.vb">
+      <DependentUpon>EjSuitePagosCheque.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePagosCuenta.ascx.designer.vb">
+      <DependentUpon>EjSuitePagosCuenta.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePagosCuenta.ascx.vb">
+      <DependentUpon>EjSuitePagosCuenta.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePrevioReporting.aspx.designer.vb">
+      <DependentUpon>EjSuitePrevioReporting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuitePrevioReporting.aspx.vb">
+      <DependentUpon>EjSuitePrevioReporting.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepCobros.ascx.designer.vb">
+      <DependentUpon>EjSuiteRepCobros.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepCobros.ascx.vb">
+      <DependentUpon>EjSuiteRepCobros.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepExtracto.ascx.designer.vb">
+      <DependentUpon>EjSuiteRepExtracto.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepExtracto.ascx.vb">
+      <DependentUpon>EjSuiteRepExtracto.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepFichas.ascx.designer.vb">
+      <DependentUpon>EjSuiteRepFichas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteRepFichas.ascx.vb">
+      <DependentUpon>EjSuiteRepFichas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteReporteKardex.ascx.designer.vb">
+      <DependentUpon>EjSuiteReporteKardex.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteReporteKardex.ascx.vb">
+      <DependentUpon>EjSuiteReporteKardex.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteReporteVentasMes.aspx.designer.vb">
+      <DependentUpon>EjSuiteReporteVentasMes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteReporteVentasMes.aspx.vb">
+      <DependentUpon>EjSuiteReporteVentasMes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteReporteVentasNetas.aspx.designer.vb">
+      <DependentUpon>EjSuiteReporteVentasNetas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\EjSuiteReporteVentasNetas.aspx.vb">
+      <DependentUpon>EjSuiteReporteVentasNetas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\LogoImage.ashx.vb">
+      <DependentUpon>LogoImage.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\PagoCliente.ascx.designer.vb">
+      <DependentUpon>PagoCliente.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\PagoCliente.ascx.vb">
+      <DependentUpon>PagoCliente.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ProductoControlSearch.ascx.designer.vb">
+      <DependentUpon>ProductoControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ProductoControlSearch.ascx.vb">
+      <DependentUpon>ProductoControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ProductoPrecioBase.ascx.designer.vb">
+      <DependentUpon>ProductoPrecioBase.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ProductoPrecioBase.ascx.vb">
+      <DependentUpon>ProductoPrecioBase.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ProductoStockActual.ascx.designer.vb">
+      <DependentUpon>ProductoStockActual.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ProductoStockActual.ascx.vb">
+      <DependentUpon>ProductoStockActual.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ProveedorControlSearch.ascx.designer.vb">
+      <DependentUpon>ProveedorControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ProveedorControlSearch.ascx.vb">
+      <DependentUpon>ProveedorControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ProveedorMarcaSearchControl.ascx.designer.vb">
+      <DependentUpon>ProveedorMarcaSearchControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ProveedorMarcaSearchControl.ascx.vb">
+      <DependentUpon>ProveedorMarcaSearchControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\regionControlSearch.ascx.designer.vb">
+      <DependentUpon>regionControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\regionControlSearch.ascx.vb">
+      <DependentUpon>regionControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\SucursalControlSearch.ascx.designer.vb">
+      <DependentUpon>SucursalControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\SucursalControlSearch.ascx.vb">
+      <DependentUpon>SucursalControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\VendedorControlSearch.ascx.designer.vb">
+      <DependentUpon>VendedorControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\VendedorControlSearch.ascx.vb">
+      <DependentUpon>VendedorControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\VentaControlSearch.ascx.designer.vb">
+      <DependentUpon>VentaControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\VentaControlSearch.ascx.vb">
+      <DependentUpon>VentaControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ZonaControlSearch.ascx.designer.vb">
+      <DependentUpon>ZonaControlSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SubControls\EjSuiteX\ZonaControlSearch.ascx.vb">
+      <DependentUpon>ZonaControlSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_LocalResources\EjSuiteSettings.ascx.resx" />
+    <None Include="01.00.00.SqlDataProvider" />
+    <None Include="EjSuite.dnn" />
+    <Content Include="dnnanim.gif" />
+    <Content Include="Images\android.gif" />
+    <Content Include="Images\bg-main.png" />
+    <Content Include="Images\bg-menu-main.png" />
+    <Content Include="Images\bg-snippet-dim.png" />
+    <Content Include="Images\bg-snippet.png" />
+    <Content Include="Images\bg_body.gif" />
+    <Content Include="Images\bg_gradient-left.png" />
+    <Content Include="Images\bg_nav.gif" />
+    <Content Include="Images\bg_wrapper.gif" />
+    <Content Include="Images\body_bg.gif" />
+    <Content Include="Images\calendar_scheduleHS.png" />
+    <Content Include="Images\collapse.jpg" />
+    <Content Include="Images\collapse_blue.jpg" />
+    <Content Include="Images\containerback.jpg" />
+    <Content Include="Images\containerback2.jpg" />
+    <Content Include="Images\cp_button.png" />
+    <Content Include="Images\demobottom.png" />
+    <Content Include="Images\demotop.png" />
+    <Content Include="Images\dnnanim.gif" />
+    <Content Include="Images\down.gif" />
+    <Content Include="Images\ejsuiteff.jpg" />
+    <Content Include="Images\EmptyStar.png" />
+    <Content Include="Images\ERP.png" />
+    <Content Include="Images\expand.jpg" />
+    <Content Include="Images\expand_blue.jpg" />
+    <Content Include="Images\FilledStar.png" />
+    <Content Include="Images\HandleGrip.png" />
+    <Content Include="Images\HandleHand.png" />
+    <Content Include="Images\handle_left.gif" />
+    <Content Include="Images\handle_right.gif" />
+    <Content Include="Images\header-opened.png" />
+    <Content Include="Images\header.png" />
+    <Content Include="Images\headerbottom_img.png" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\logoX.jpg" />
+    <Content Include="Images\navigation_back.gif" />
+    <Content Include="Images\pbrs.png" />
+    <Content Include="Images\Question.PNG" />
+    <Content Include="Images\rail_dark.gif" />
+    <Content Include="Images\rail_light.gif" />
+    <Content Include="Images\rightcoltop.gif" />
+    <Content Include="Images\samples_bg.gif" />
+    <Content Include="Images\SavedStar.png" />
+    <Content Include="Images\sidebar_header.png" />
+    <Content Include="Images\slider_h_handle_down.gif" />
+    <Content Include="Images\slider_h_handle_hover.gif" />
+    <Content Include="Images\slider_v_handle_down.gif" />
+    <Content Include="Images\slider_v_handle_hover.gif" />
+    <Content Include="Images\up.gif" />
+    <Content Include="Images\walkthrough_bg.gif" />
+    <Content Include="SubControls\EjSuiteX\AlmacenEmpleadoControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\BeneficiarioControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\ClienteControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\ClienteVendedorControl.ascx" />
+    <Content Include="SubControls\EjSuiteX\CotizacionControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\CuentaCliente.ascx" />
+    <Content Include="SubControls\EjSuiteX\DeudorControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\EmpleadoControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\GrupoterapeuticoControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteClienteMora.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteAjustePrecios.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteAjusteVentas.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteAndroid.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteAsignaciones.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteBeneficiarios.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteBienvenido.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteClientes.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteComisiones.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteCotizacion.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteDatosSni.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteDeudamayormil1.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteDeudores.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteImportPedido.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteImpuestos.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteIngresos.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteKardex.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteListaGrupos.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteObjetivos.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuitePago1.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuitePedido.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuitePedidoFacturacion.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteProductos.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteProveedores.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteRepDaVinci.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteRepGeneral.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteReports3D.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteRepSucursal.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteRepVendedores.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteRepVentas.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteTotalCompraCliente1.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteTraspasos.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteValeConsumo.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteVencidos.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteVentaCliente1.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteVentaPorVendedorProducto1.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteVentasPorZona.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteVentasPorZonas.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteVisitadores.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteZonas.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuitePagosCheque.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuitePagosCuenta.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuitePrevioReporting.aspx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteRepCobros.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteRepExtracto.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteRepFichas.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteReporteKardex.ascx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteReporteVentasMes.aspx" />
+    <Content Include="SubControls\EjSuiteX\EjSuiteReporteVentasNetas.aspx" />
+    <Content Include="SubControls\EjSuiteX\PagoCliente.ascx" />
+    <Content Include="SubControls\EjSuiteX\ProductoControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\ProductoPrecioBase.ascx" />
+    <Content Include="SubControls\EjSuiteX\ProductoStockActual.ascx" />
+    <Content Include="SubControls\EjSuiteX\ProveedorControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\ProveedorMarcaSearchControl.ascx" />
+    <Content Include="SubControls\EjSuiteX\regionControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\SucursalControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\VendedorControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\VentaControlSearch.ascx" />
+    <Content Include="SubControls\EjSuiteX\ZonaControlSearch.ascx" />
+    <Content Include="Subsonic.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SubControls\EjSuiteX\CodigoQR.ashx" />
+    <Content Include="packages.config" />
+    <Content Include="SubControls\EjSuiteX\LogoImage.ashx" />
+    <None Include="Uninstall.SqlDataProvider" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Controls\AlmacenEmpleadoControl.ascx" />
+    <Content Include="Controls\ClienteControl.ascx" />
+    <Content Include="Controls\ClienteControl1.ascx" />
+    <Content Include="Controls\DeudorControl.ascx" />
+    <Content Include="Controls\EmpleadoControl.ascx" />
+    <Content Include="Controls\GrupoterapeuticoControl.ascx" />
+    <Content Include="Controls\ProductoControl.ascx" />
+    <Content Include="Controls\ProductoVentaControl.ascx" />
+    <Content Include="Controls\ProveedorControl.ascx" />
+    <Content Include="Controls\regionControl.ascx" />
+    <Content Include="Controls\sucursal1Control.ascx" />
+    <Content Include="Controls\SucursalControl.ascx" />
+    <Content Include="Controls\VendedorControl.ascx" />
+    <Content Include="Controls\ZonaControl.ascx" />
+    <Content Include="Documentation\Documentation.css" />
+    <Content Include="Documentation\Documentation.html" />
+    <Content Include="Documentation\logo.gif" />
+    <Content Include="Images\10.gif" />
+    <Content Include="Images\32x32_filter.png" />
+    <Content Include="Images\35.jpg" />
+    <Content Include="Images\41.bmp" />
+    <Content Include="Images\48_import.png" />
+    <Content Include="Images\48_import2.png" />
+    <Content Include="Images\6.gif" />
+    <Content Include="Images\6ea769104321cf5843a02c0616525713.gif" />
+    <Content Include="Images\7.gif" />
+    <Content Include="Images\8.gif" />
+    <Content Include="Images\acp.gif" />
+    <Content Include="Images\action_notification.gif" />
+    <Content Include="Images\action_project_archive.gif" />
+    <Content Include="Images\action_refresh.gif" />
+    <Content Include="Images\address.gif" />
+    <Content Include="Images\address_book.gif" />
+    <Content Include="Images\address_book3.gif" />
+    <Content Include="Images\add_me.gif" />
+    <Content Include="Images\anexos.gif" />
+    <Content Include="Images\announcements.gif" />
+    <Content Include="Images\anti_virus_old_school.png" />
+    <Content Include="Images\applet3-48.png" />
+    <Content Include="Images\archive.gif" />
+    <Content Include="Images\atb_members.gif" />
+    <Content Include="Images\att.gif" />
+    <Content Include="Images\attachDiscussion.gif" />
+    <Content Include="Images\attachfile.gif" />
+    <Content Include="Images\attachments.gif" />
+    <Content Include="Images\avatar.gif" />
+    <Content Include="Images\backup.gif" />
+    <Content Include="Images\bbcodes.gif" />
+    <Content Include="Images\bg_line.gif" />
+    <Content Include="Images\bigmac.jpg" />
+    <Content Include="Images\bill_of_document.png" />
+    <Content Include="Images\blogging.gif" />
+    <Content Include="Images\boxin.gif" />
+    <Content Include="Images\boxout.gif" />
+    <Content Include="Images\boxx.gif" />
+    <Content Include="Images\buyonline.gif" />
+    <Content Include="Images\cabinet2.gif" />
+    <Content Include="Images\cabinet3.gif" />
+    <Content Include="Images\cabinet4.gif" />
+    <Content Include="Images\calendar.gif" />
+    <Content Include="Images\calendr2.gif" />
+    <Content Include="Images\camera2.gif" />
+    <Content Include="Images\cat_foru.gif" />
+    <Content Include="Images\cbprint.gif" />
+    <Content Include="Images\checkedmail.gif" />
+    <Content Include="Images\check_blue.gif" />
+    <Content Include="Images\check_blue_dbl.gif" />
+    <Content Include="Images\check_escelate.gif" />
+    <Content Include="Images\check_gold.gif" />
+    <Content Include="Images\check_gold_dbl.gif" />
+    <Content Include="Images\check_green.gif" />
+    <Content Include="Images\check_green_dbl.gif" />
+    <Content Include="Images\check_r_closed.gif" />
+    <Content Include="Images\check_sr_closed.gif" />
+    <Content Include="Images\choice-no.gif" />
+    <Content Include="Images\choice-yes.gif" />
+    <Content Include="Images\clavier.png" />
+    <Content Include="Images\compass.gif" />
+    <Content Include="Images\config.gif" />
+    <Content Include="Images\Configuration.gif" />
+    <Content Include="Images\contacts.gif" />
+    <Content Include="Images\contact_icon.gif" />
+    <Content Include="Images\cool.gif" />
+    <Content Include="Images\Copy of menuicon.gif" />
+    <Content Include="Images\createFolder.gif" />
+    <Content Include="Images\createProject.gif" />
+    <Content Include="Images\cross_red.gif" />
+    <Content Include="Images\cross_red_dbl.gif" />
+    <Content Include="Images\database.gif" />
+    <Content Include="Images\data_table.gif" />
+    <Content Include="Images\delete_1.gif" />
+    <Content Include="Images\delivery-change-mind.gif" />
+    <Content Include="Images\delivery-faulty.gif" />
+    <Content Include="Images\delivery-lost.gif" />
+    <Content Include="Images\delivery-refunds.gif" />
+    <Content Include="Images\delivery-returnitem.gif" />
+    <Content Include="Images\dice_icon.gif" />
+    <Content Include="Images\docicon.gif" />
+    <Content Include="Images\documentation.gif" />
+    <Content Include="Images\documents.gif" />
+    <Content Include="Images\documents_copie.png" />
+    <Content Include="Images\down_ico.gif" />
+    <Content Include="Images\drafts.gif" />
+    <Content Include="Images\ea_icon.gif" />
+    <Content Include="Images\EditarDoc.gif" />
+    <Content Include="Images\editProfile.gif" />
+    <Content Include="Images\editTaskList.gif" />
+    <Content Include="Images\email.gif" />
+    <Content Include="Images\emailicon222.gif" />
+    <Content Include="Images\email_notification.gif" />
+    <Content Include="Images\envelop3.gif" />
+    <Content Include="Images\envia_e-mail.gif" />
+    <Content Include="Images\event.gif" />
+    <Content Include="Images\event_22x22.gif" />
+    <Content Include="Images\expenseby_category.gif" />
+    <Content Include="Images\ExpenseBy_Employee.gif" />
+    <Content Include="Images\factura.png" />
+    <Content Include="Images\failed-sm.gif" />
+    <Content Include="Images\faq15244_WBIcon.gif" />
+    <Content Include="Images\fc_cmd_upload1.gif" />
+    <Content Include="Images\feedback.gif" />
+    <Content Include="Images\Feriado.gif" />
+    <Content Include="Images\Feriados.gif" />
+    <Content Include="Images\file04.gif" />
+    <Content Include="Images\filer.gif" />
+    <Content Include="Images\Find.gif" />
+    <Content Include="Images\find2.gif" />
+    <Content Include="Images\flag_blue.gif" />
+    <Content Include="Images\flag_none.gif" />
+    <Content Include="Images\flag_red.gif" />
+    <Content Include="Images\forum.gif" />
+    <Content Include="Images\forum7.gif" />
+    <Content Include="Images\f_sendpriv.gif" />
+    <Content Include="Images\gearfolder.gif" />
+    <Content Include="Images\gears_preferences.gif" />
+    <Content Include="Images\GetReport.gif" />
+    <Content Include="Images\gnome.jpg" />
+    <Content Include="Images\gpg-encrypted.png" />
+    <Content Include="Images\group-discuss.gif" />
+    <Content Include="Images\group-discusssd.gif" />
+    <Content Include="Images\groups.gif" />
+    <Content Include="Images\grupo.gif" />
+    <Content Include="Images\harddrive.gif" />
+    <Content Include="Images\healthcare.gif" />
+    <Content Include="Images\health_care_shield.png" />
+    <Content Include="Images\help.gif" />
+    <Content Include="Images\help2.gif" />
+    <Content Include="Images\histo.gif" />
+    <Content Include="Images\Homework.png" />
+    <Content Include="Images\HR.gif" />
+    <Content Include="Images\hsi_ac01.gif" />
+    <Content Include="Images\hsi_ac03.gif" />
+    <Content Include="Images\hsi_ac58.gif" />
+    <Content Include="Images\HTMLicon.gif" />
+    <Content Include="Images\icon-support.gif" />
+    <Content Include="Images\icon1.gif" />
+    <Content Include="Images\icons.gif" />
+    <Content Include="Images\icon_attachment.gif" />
+    <Content Include="Images\icon_Blogs.gif" />
+    <Content Include="Images\icon_community.gif" />
+    <Content Include="Images\icon_directory_16.gif" />
+    <Content Include="Images\icon_doc_ppoint.gif" />
+    <Content Include="Images\icon_doc_word.gif" />
+    <Content Include="Images\icon_excel.gif" />
+    <Content Include="Images\icon_Favourite.gif" />
+    <Content Include="Images\icon_flag.gif" />
+    <Content Include="Images\icon_icon.gif" />
+    <Content Include="Images\icon_info.gif" />
+    <Content Include="Images\icon_mini_home.gif" />
+    <Content Include="Images\icon_mini_memberlist.gif" />
+    <Content Include="Images\icon_mini_register.gif" />
+    <Content Include="Images\icon_mini_search.gif" />
+    <Content Include="Images\icon_onlineview.gif" />
+    <Content Include="Images\icon_pdf50.gif" />
+    <Content Include="Images\icon_priority.gif" />
+    <Content Include="Images\icon_project2.gif" />
+    <Content Include="Images\icon_project_unarchive.gif" />
+    <Content Include="Images\icon_search2.gif" />
+    <Content Include="Images\icon_task.gif" />
+    <Content Include="Images\icon_text.gif" />
+    <Content Include="Images\icon_user.gif" />
+    <Content Include="Images\icon_web.gif" />
+    <Content Include="Images\icon_webdesign.gif" />
+    <Content Include="Images\ico_about.gif" />
+    <Content Include="Images\ico_admin.gif" />
+    <Content Include="Images\ico_doc_legal.gif" />
+    <Content Include="Images\ico_domain_names48.gif" />
+    <Content Include="Images\ico_ema48.gif" />
+    <Content Include="Images\ico_ema_storage3.gif" />
+    <Content Include="Images\ico_gm_chat48.gif" />
+    <Content Include="Images\ico_hosting48.gif" />
+    <Content Include="Images\ico_lifecycle.gif" />
+    <Content Include="Images\ico_mailbox32.gif" />
+    <Content Include="Images\ico_mail_scan.gif" />
+    <Content Include="Images\ico_server_plugin.gif" />
+    <Content Include="Images\ico_spam.gif" />
+    <Content Include="Images\ico_user_a.gif" />
+    <Content Include="Images\ico_user_r.gif" />
+    <Content Include="Images\ico_user_sr.gif" />
+    <Content Include="Images\ico_write_verify.gif" />
+    <Content Include="Images\img_comments.gif" />
+    <Content Include="Images\img_homepage.gif" />
+    <Content Include="Images\img_rate_down.gif" />
+    <Content Include="Images\img_rate_up.gif" />
+    <Content Include="Images\imprimir.gif" />
+    <Content Include="Images\im_msn.gif" />
+    <Content Include="Images\inbox-48.png" />
+    <Content Include="Images\inbox.gif" />
+    <Content Include="Images\inbox7.gif" />
+    <Content Include="Images\info.gif" />
+    <Content Include="Images\info2.gif" />
+    <Content Include="Images\info_22x22.gif" />
+    <Content Include="Images\invoice.png" />
+    <Content Include="Images\kcmdrkonqi.png" />
+    <Content Include="Images\langicon.gif" />
+    <Content Include="Images\language.gif" />
+    <Content Include="Images\lifepreserver.gif" />
+    <Content Include="Images\light.gif" />
+    <Content Include="Images\lightbulb.gif" />
+    <Content Include="Images\links.gif" />
+    <Content Include="Images\list.gif" />
+    <Content Include="Images\LotPapaers.gif" />
+    <Content Include="Images\mail9.gif" />
+    <Content Include="Images\mailbox2.gif" />
+    <Content Include="Images\mailsd.gif" />
+    <Content Include="Images\mail_earth.gif" />
+    <Content Include="Images\mail_man.gif" />
+    <Content Include="Images\main_ch_acc.gif" />
+    <Content Include="Images\main_ch_pass.gif" />
+    <Content Include="Images\manageCalendar.gif" />
+    <Content Include="Images\manageTemplates.gif" />
+    <Content Include="Images\map_22x22.gif" />
+    <Content Include="Images\markread.gif" />
+    <Content Include="Images\medical_pot_pills.png" />
+    <Content Include="Images\meeting_planner.gif" />
+    <Content Include="Images\menuicon.gif" />
+    <Content Include="Images\message.jpg" />
+    <Content Include="Images\milestone.gif" />
+    <Content Include="Images\mobile.gif" />
+    <Content Include="Images\moderator.gif" />
+    <Content Include="Images\msg_forwarded.gif" />
+    <Content Include="Images\msg_read.gif" />
+    <Content Include="Images\msg_replied.gif" />
+    <Content Include="Images\msg_unread.gif" />
+    <Content Include="Images\MSN.bmp" />
+    <Content Include="Images\MSN16.bmp" />
+    <Content Include="Images\mspowerpointIcon.gif" />
+    <Content Include="Images\My Documents.png" />
+    <Content Include="Images\My Documents2.png" />
+    <Content Include="Images\My Documents3.png" />
+    <Content Include="Images\newsletter.gif" />
+    <Content Include="Images\newThread.gif" />
+    <Content Include="Images\note02.gif" />
+    <Content Include="Images\Notepad.png" />
+    <Content Include="Images\Notepad2.png" />
+    <Content Include="Images\notes.gif" />
+    <Content Include="Images\op_opinar_r.gif" />
+    <Content Include="Images\op_recomendar_r.gif" />
+    <Content Include="Images\order_ico.gif" />
+    <Content Include="Images\orgchrt1.gif" />
+    <Content Include="Images\outbox.gif" />
+    <Content Include="Images\outbox8.gif" />
+    <Content Include="Images\outbox_out.gif" />
+    <Content Include="Images\payments.gif" />
+    <Content Include="Images\pdf.gif" />
+    <Content Include="Images\pdficon.gif" />
+    <Content Include="Images\phonebook.gif" />
+    <Content Include="Images\photos.gif" />
+    <Content Include="Images\photos4.gif" />
+    <Content Include="Images\pic_unknown.gif" />
+    <Content Include="Images\pijllismal.gif" />
+    <Content Include="Images\pijlneersmal.gif" />
+    <Content Include="Images\pijlopsmal.gif" />
+    <Content Include="Images\pijlsmal.gif" />
+    <Content Include="Images\PNGPH.gif" />
+    <Content Include="Images\poll.gif" />
+    <Content Include="Images\pollicon.gif" />
+    <Content Include="Images\postit.jpg" />
+    <Content Include="Images\printer.gif" />
+    <Content Include="Images\Printer.png" />
+    <Content Include="Images\priority_high.gif" />
+    <Content Include="Images\priority_low.gif" />
+    <Content Include="Images\private_forum.gif" />
+    <Content Include="Images\private_messages.gif" />
+    <Content Include="Images\profiles.gif" />
+    <Content Include="Images\progs_rate.gif" />
+    <Content Include="Images\puzzle.gif" />
+    <Content Include="Images\question.gif" />
+    <Content Include="Images\ranks.gif" />
+    <Content Include="Images\Recent Documents.png" />
+    <Content Include="Images\recursive.gif" />
+    <Content Include="Images\Recycle%2520Bin%2520%28empty%293.gif" />
+    <Content Include="Images\refer2.gif" />
+    <Content Include="Images\remaining-sm.gif" />
+    <Content Include="Images\reminder.gif" />
+    <Content Include="Images\reorder.gif" />
+    <Content Include="Images\ReportsB.gif" />
+    <Content Include="Images\restore.gif" />
+    <Content Include="Images\review.gif" />
+    <Content Include="Images\rolodex1.gif" />
+    <Content Include="Images\rtg_discuss.gif" />
+    <Content Include="Images\Run.png" />
+    <Content Include="Images\Scanner-small.gif" />
+    <Content Include="Images\Scanner-small.jpg" />
+    <Content Include="Images\scanner.gif" />
+    <Content Include="Images\scanner2.gif" />
+    <Content Include="Images\Search Engines.gif" />
+    <Content Include="Images\search-icon.gif" />
+    <Content Include="Images\Search.png" />
+    <Content Include="Images\searchico.gif" />
+    <Content Include="Images\Security.gif" />
+    <Content Include="Images\sendtofriend.gif" />
+    <Content Include="Images\sent-48.png" />
+    <Content Include="Images\signatures.gif" />
+    <Content Include="Images\sinfoto.gif" />
+    <Content Include="Images\sketch2.gif" />
+    <Content Include="Images\smallPackage.gif" />
+    <Content Include="Images\small_male.gif" />
+    <Content Include="Images\Software Downloads.gif" />
+    <Content Include="Images\Software.gif" />
+    <Content Include="Images\stats.gif" />
+    <Content Include="Images\stats7.gif" />
+    <Content Include="Images\steps.gif" />
+    <Content Include="Images\subscription22109_WBIcon.gif" />
+    <Content Include="Images\success-lg.gif" />
+    <Content Include="Images\success-sm.gif" />
+    <Content Include="Images\supportforum.gif" />
+    <Content Include="Images\syscheck.gif" />
+    <Content Include="Images\t-disk.jpg" />
+    <Content Include="Images\tag.gif" />
+    <Content Include="Images\tasks.gif" />
+    <Content Include="Images\templates.gif" />
+    <Content Include="Images\TextIcon.gif" />
+    <Content Include="Images\thread_important_new.gif" />
+    <Content Include="Images\thread_new.gif" />
+    <Content Include="Images\thread_pinned_new.gif" />
+    <Content Include="Images\thread_popular_new.gif" />
+    <Content Include="Images\thread_popular_read.gif" />
+    <Content Include="Images\thread_read.gif" />
+    <Content Include="Images\thumbup2.gif" />
+    <Content Include="Images\th_mailbox.jpg" />
+    <Content Include="Images\th_mailbox2.jpg" />
+    <Content Include="Images\todo.gif" />
+    <Content Include="Images\topicnews.gif" />
+    <Content Include="Images\tour_officer_md.gif" />
+    <Content Include="Images\trafficlight_green.gif" />
+    <Content Include="Images\Transportation.gif" />
+    <Content Include="Images\Trash.gif" />
+    <Content Include="Images\tree-drafts.gif" />
+    <Content Include="Images\tree.gif" />
+    <Content Include="Images\tricon_impresora.gif" />
+    <Content Include="Images\tricon_rate.gif" />
+    <Content Include="Images\ttu.gif" />
+    <Content Include="Images\Types.gif" />
+    <Content Include="Images\Ubicaciones.gif" />
+    <Content Include="Images\ug.gif" />
+    <Content Include="Images\uploadFile.gif" />
+    <Content Include="Images\usersuss.gif" />
+    <Content Include="Images\user_online.gif" />
+    <Content Include="Images\usrmgr.gif" />
+    <Content Include="Images\Vacation.gif" />
+    <Content Include="Images\warning.gif" />
+    <Content Include="Images\webDocIcon.gif" />
+    <Content Include="Images\Windows Explorer.png" />
+    <Content Include="Images\wink.gif" />
+    <Content Include="Images\work.gif" />
+    <Content Include="Images\world3.jpg" />
+    <Content Include="Images\wysiwyg.gif" />
+    <Content Include="Images\xls.gif" />
+    <Content Include="Images\YearCut.gif" />
+    <Content Include="module.css" />
+    <Content Include="EjSuiteSettings.ascx" />
+    <Content Include="EjSuiteView.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\EjSuiteView.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62597</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/ejsuite/DesktopModules/EjSuite</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/ejsuite</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

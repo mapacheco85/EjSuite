@@ -1,0 +1,1698 @@
+﻿/*==============================================================*/
+/* DBMS name:      Microsoft SQL Server 2008                    */
+/* Created on:     28/06/2014 23:17:38                          */
+/*==============================================================*/
+
+
+/*==============================================================*/
+/* Table: ejs_ACTIVIDAD                                         */
+/*==============================================================*/
+create table dbo.ejs_ACTIVIDAD (
+   ACTIVIDADID          numeric              identity,
+   SUCURSALID           numeric              null,
+   EMPLEADOID           numeric              null,
+   FECHAINICIO          datetime             not null,
+   FECHAFINAL           datetime             null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: ACTIVIDAD_PK_ID                                       */
+/*==============================================================*/
+create unique index ACTIVIDAD_PK_ID on dbo.ejs_ACTIVIDAD (
+ACTIVIDADID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_ALMACEN                                           */
+/*==============================================================*/
+create table dbo.ejs_ALMACEN (
+   ALMACENID            numeric              identity(1, 1),
+   SUCURSALID           numeric              null,
+   JEFEALMACEN          numeric              null,
+   CAPACIDAD            varchar(100)          null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: ALMACEN_PK_ID                                         */
+/*==============================================================*/
+create unique clustered index ALMACEN_PK_ID on dbo.ejs_ALMACEN (
+ALMACENID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_BENEFICIARIO                                      */
+/*==============================================================*/
+create table dbo.ejs_BENEFICIARIO (
+   BENEFICIARIOID       int                  identity(1, 1),
+   CLIENTEID            int                  not null,
+   NIT                  varchar(20)           not null,
+   NOMBRE               varchar(500)          not null,
+   FECHAREG             datetime             null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: BENEFICIARIO_PK_ID                                    */
+/*==============================================================*/
+create unique clustered index BENEFICIARIO_PK_ID on dbo.ejs_BENEFICIARIO (
+BENEFICIARIOID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_CLIENTE                                           */
+/*==============================================================*/
+create table dbo.ejs_CLIENTE (
+   CLIENTEID            int                  not null,
+   NIT                  varchar(20)           null,
+   REGIONID             numeric              null,
+   CLIENTE              varchar(200)          not null,
+   DIRECCION            varchar(200)          null,
+   TELEFONO             int                  null,
+   USERID               int                  null,
+   ZONAID               int                  null,
+   R                    int                  null,
+   CONTACTO             varchar(300)          null,
+   REFERENCIAS          varchar(300)          null,
+   CELULAR              varchar(20)           null,
+   TELEFONO1            varchar(20)           null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK__ejs_CLIE_PK_ID                                    */
+/*==============================================================*/
+create unique clustered index PK__ejs_CLIE_PK_ID on dbo.ejs_CLIENTE (
+CLIENTEID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_DETALLE                                           */
+/*==============================================================*/
+create table dbo.ejs_DETALLE (
+   DETALLEID            int                  identity(1,1),
+   PRODUCTOID           varchar(50)           not null,
+   nCodFactura            numeric              not null,
+   CANTIDAD             numeric              not null,
+   PRECIOUNITARIO       money                not null,
+   SUELTOS              bit                  null,
+   DESCUENTO            numeric(18,2)        not null constraint DF_ejs_DETALLE_DESCUENTO default (0.00)
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_DETALLE                                        */
+/*==============================================================*/
+create unique clustered index PK_ejs_DETALLE on dbo.ejs_DETALLE (
+DETALLEID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_EMPLEADO                                          */
+/*==============================================================*/
+create table dbo.ejs_EMPLEADO (
+   EMPLEADOID           numeric              identity(1, 1),
+   USERID               numeric              not null,
+   NOMBRES              varchar(200)          not null,
+   APELLIDOS            varchar(200)          not null,
+   AREA                 varchar(200)          null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_EMPLEADO                                       */
+/*==============================================================*/
+create unique clustered index PK_ejs_EMPLEADO on dbo.ejs_EMPLEADO (
+EMPLEADOID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_FACTURA                                           */
+/*==============================================================*/
+create table dbo.ejs_FACTURA (
+   nCodFactura            numeric              identity(1, 1),
+   NIT                  varchar(20)           null,
+   NUMERO               numeric              not null,
+   AUTORIZACION         varchar(20)           not null,
+   CODIGOSEGURIDAD      varchar(15)           not null,
+   LLAVEDOSIFICACION    varchar(150)          not null,
+   FECHALIMITE          datetime             not null,
+   PENDIENTE            bit                  not null,
+   PAGADA               bit                  not null,
+   SUCURSALID           int                  not null,
+   USUARIOID            int                  not null,
+   FECHAEMISION         date                 null,
+   FECHAVENCIMIENTO     date                 null,
+   ANULADO              bit                  null,
+   CUENTA               int                  null,
+   CLIENTEID            int                  not null constraint DF_ejs_FACTURA_CLIENTEID default (0),
+   VENDEDORID           numeric              null,
+   FP                   date                 null,
+   BENEFICIARIOID       int                  null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_FACTURAID                                      */
+/*==============================================================*/
+create unique index PK_ejs_FACTURAID on dbo.ejs_FACTURA (
+nCodFactura ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_GRUPO                                             */
+/*==============================================================*/
+create table dbo.ejs_GRUPO (
+   GRUPOID              int                  identity(1,1),
+   TIPOGRUPO            varchar(5)           null
+)
+ON [PRIMARY]
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_GRUPO                                          */
+/*==============================================================*/
+create unique clustered index PK_ejs_GRUPO on dbo.ejs_GRUPO (
+GRUPOID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_GRUPOTERAPEUTICO                                  */
+/*==============================================================*/
+create table dbo.ejs_GRUPOTERAPEUTICO (
+   GRUPOCODIGO          char(10)              not null,
+   GRUPOMEDICO          varchar(200)          not null,
+   SIGLA                char(5)               null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_GRUPOTERAPEUTICO                               */
+/*==============================================================*/
+create unique clustered index PK_ejs_GRUPOTERAPEUTICO on dbo.ejs_GRUPOTERAPEUTICO (
+GRUPOCODIGO ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_KARDEX                                            */
+/*==============================================================*/
+create table dbo.ejs_KARDEX (
+   KARDEXID             numeric              identity(1, 1),
+   ALMACENID            numeric              null,
+   LOTEID               numeric              null,
+   PRODUCTOID           varchar(50)           null,
+   FECHAREGISTRO        datetime             not null,
+   OBSERVACION          varchar(200)          not null,
+   PRECIOCOMPRA         money                not null,
+   ENTRADA              numeric              not null,
+   SALIDA               numeric              not null,
+   ENTRADAS             int                  not null,
+   SALIDAS              int                  not null,
+   STOCKANTERIORENVASE  numeric              not null,
+   STOCKACTUALENVASE    numeric              not null,
+   STOCKANTERIORSUELTO  numeric              not null,
+   STOCKACTUALSUELTO    numeric              not null,
+   VALORTOTAL           money                not null,
+   GLOSA                text                  null,
+   PRECIOALMACEN        money                null,
+   PRECIOVENTA          money                null,
+   ENTRADAB             int                  null,
+   SALIDAB              int                  null,
+   ENTRADAR             int                  null,
+   SALIDAR              int                  null,
+   STOCKANTERIORB       int                  null,
+   STOCKACTUALB         int                  null,
+   STOCKANTERIORR       int                  null,
+   STOCKACTUALR         int                  null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_KARDEX                                         */
+/*==============================================================*/
+create unique clustered index PK_ejs_KARDEX on dbo.ejs_KARDEX (
+KARDEXID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_LISTADOPROD                                       */
+/*==============================================================*/
+create table dbo.ejs_LISTADOPROD (
+   LISTADOID            int                  identity(1,1),
+   PRODUCTOID           varchar(50)          null,
+   GRUPOID              int                  null,
+   FECHAREGISTRO        datetime             null,
+   HABILITADO           bit                  null
+)
+ON [PRIMARY]
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_LISTADOPROD                                    */
+/*==============================================================*/
+create unique clustered index PK_ejs_LISTADOPROD on dbo.ejs_LISTADOPROD (
+LISTADOID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_LOG                                               */
+/*==============================================================*/
+create table dbo.ejs_LOG (
+   LOGID                numeric              identity(1, 1),
+   FECHAHORA            datetime             not null,
+   USERID               int                  not null,
+   TABLA                varchar(50)           not null,
+   OPERACION            varchar(50)           not null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_LOG                                            */
+/*==============================================================*/
+create unique clustered index PK_ejs_LOG on dbo.ejs_LOG (
+LOGID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_LOTE                                              */
+/*==============================================================*/
+create table dbo.ejs_LOTE (
+   LOTEID               numeric              identity(1, 1),
+   PRODUCTOID           varchar(50)           null,
+   COMPROBANTE          varchar(20)           not null,
+   FACTURA              varchar(20)           not null,
+   FORMAPAGO            varchar(50)           null,
+   FECHAINGRESO         datetime             not null,
+   FECHAVCTO            datetime             not null,
+   PRECIOANTERIORENVASE money                not null,
+   PRECIOACTUALENVASE   money                not null,
+   ESTADO               bit                  not null,
+   TOTALENVASES         numeric              not null,
+   TOTALSUELTOS         numeric              not null,
+   OBSERVACIONES        text                  null,
+   COSTOUNIDAD          money                null,
+   TIPO                 varchar(50)           null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_LOTE                                           */
+/*==============================================================*/
+create unique clustered index PK_ejs_LOTE on dbo.ejs_LOTE (
+LOTEID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_MARCA                                             */
+/*==============================================================*/
+create table dbo.ejs_MARCA (
+   MARCAID              numeric              identity(1, 1),
+   PROVEEDORID          numeric              null,
+   EMPRESA              varchar(200)          not null,
+   DIRECCION            varchar(200)          not null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_MARCA                                          */
+/*==============================================================*/
+create unique clustered index PK_ejs_MARCA on dbo.ejs_MARCA (
+MARCAID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_NOTACREDITO                                       */
+/*==============================================================*/
+create table dbo.ejs_NOTACREDITO (
+   CREDITOID            numeric              identity(1, 1),
+   FECHA1               date                 null,
+   CLIENTEID            int                  null,
+   USUARIOID            int                  null,
+   FECHAREGISTRO        date                 null,
+   PEDIDOID             int                  null,
+   VENDEDORID           varchar(50)          null,
+   VALORPEDIDO          money                null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_NOTACREDITO                                    */
+/*==============================================================*/
+create unique clustered index PK_ejs_NOTACREDITO on dbo.ejs_NOTACREDITO (
+CREDITOID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_NOTADEBITO                                        */
+/*==============================================================*/
+create table dbo.ejs_NOTADEBITO (
+   DEBITOID             numeric              identity(1, 1),
+   FECHA1               date                 null,
+   CLIENTEID            int                  null,
+   USUARIOID            int                  null,
+   FECHAREGISTRO        date                 null,
+   PEDIDOID             int                   null,
+   VENDEDORID           varchar(50)           null,
+   VALORPEDIDO          money                 null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_NOTADEBITO                                     */
+/*==============================================================*/
+create unique clustered index PK_ejs_NOTADEBITO on dbo.ejs_NOTADEBITO (
+DEBITOID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_OBJETIVO                                          */
+/*==============================================================*/
+create table ejs_OBJETIVO (
+   OBJETIVOID           numeric              identity,
+   FECHAASIGNACION      datetime             not null,
+   MESCUMPLIMIENTO      int                  not null,
+   GESTIONCUMPLIMIENTO  int                  not null,
+   ESPRODUCTO           bit                  not null,
+   ESCUPO               bit                  not null,
+   ESVENTA              bit                  not null,
+   ESGERENCIAL          bit                  not null,
+   LIMITE1              numeric(18,2)        not null,
+   LIMITE2              numeric(18,2)        not null,
+   FECHACUMPLIMIENTO    datetime             not null,
+   EMPLEADOID           int                  not null,
+   PORCENTAJE           numeric(18,2)        not null
+)
+go
+
+/*==============================================================*/
+/* Index: PK_OBJETIVO_ID                                        */
+/*==============================================================*/
+create unique clustered index PK_OBJETIVO_ID on ejs_OBJETIVO (
+OBJETIVOID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_OBJETIVODETALLE                                   */
+/*==============================================================*/
+create table ejs_OBJETIVODETALLE (
+   OBJETIVODETALLEID    int                  identity,
+   OBJETIVOID           numeric              null,
+   PRODUCTOID           varchar(50)          null,
+   CANTIDAD             int                  null,
+   MONTO                money                null,
+   VALORNUMERICO        numeric(9,2)         null,
+   VALORLITERAL         varchar(500)         null,
+   VALORFECHA           date                 null,
+   DESCRIPCION          varchar(50)          null,
+   TIENEDESCRIPCION     bit                  null
+)
+go
+
+/*==============================================================*/
+/* Index: ejs_OBJETIVODETALLE_ID                                */
+/*==============================================================*/
+create unique clustered index ejs_OBJETIVODETALLE_ID on ejs_OBJETIVODETALLE (
+OBJETIVODETALLEID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_PAGO                                              */
+/*==============================================================*/
+create table dbo.ejs_PAGO (
+   PAGOID               int                  identity(1, 1),
+   nCodFactura            numeric              not null,
+   MONTO                money                not null,
+   COMPROBANTE          varchar(10)           not null,
+   BANCO                varchar(50)           not null,
+   USACHEQUE            bit                  not null,
+   NROCHEQUE            varchar(10)           null,
+   FECHACOBRO           datetime             null,
+   BENEFICIARIO         varchar(50)           null,
+   FECHAEXTRACTO        datetime             null,
+   SALDO                money                null,
+   VENDEDORID           numeric              null,
+   FECHAPAGO            datetime             null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_PAGO                                           */
+/*==============================================================*/
+create unique clustered index PK_ejs_PAGO on dbo.ejs_PAGO (
+PAGOID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_PEDIDO                                            */
+/*==============================================================*/
+create table dbo.ejs_PEDIDO (
+   PEDIDOID             int             identity(1, 1),
+   NIT                  varchar(20)           null,
+   NUMERO               varchar(20)          not null,
+   FECHAENTREGA         datetime              not null,
+   FACTURAASOCIADAID    int                   not null,
+   ENTREGADO            bit                  not null,
+   NOTADEBITO           bit                  not null,
+   SUCURSALID           int                  not null,
+   ANULADO              bit                  null,
+   FECHASOLICITUD       date                 null,
+   NOTACREDITO          bit                  null,
+   CLIENTEID            int                  not null,
+   VENDEDORID           numeric              null,
+   BENEFICIARIOID       int                  null,
+   FIRMACLIENTE         varchar(200)         null,
+   ESTADOENVIO			char(1)				 null 
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_PEDIDO_ID                                          */
+/*==============================================================*/
+create unique clustered index PK_PEDIDO_ID on dbo.ejs_PEDIDO (
+PEDIDOID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_PEDIDODETALLE                                     */
+/*==============================================================*/
+create table dbo.ejs_PEDIDODETALLE (
+   PEDDETALLEID         numeric              identity(1, 1),
+   PEDIDOID             int             not null,
+   PRODUCTOID           varchar(50)           not null,
+   CANTIDAD             int                  not null,
+   PRECIOUNITARIO       money                not null,
+   DESCUENTO            numeric(18,2)        not null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_PEDIDODETALLE                                  */
+/*==============================================================*/
+create unique clustered index PK_ejs_PEDIDODETALLE on dbo.ejs_PEDIDODETALLE (
+PEDDETALLEID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_PRODUCTO                                          */
+/*==============================================================*/
+create table dbo.ejs_PRODUCTO (
+   PRODUCTOID           varchar(50)           not null,
+   PROVEEDORID          numeric              null,
+   MARCAID              numeric              null,
+   GRUPOCODIGO          char(10)              null,
+   PEDDETALLEID         numeric              null,
+   NOMBREGENERICO       varchar(100)          null,
+   NOMBRECOMERCIAL      varchar(100)          not null,
+   DETALLES             text                  not null,
+   PRECIOCOMPRA         money                not null,
+   UNUNA                varchar(100)          not null,
+   CONTIENE             varchar(100)          not null,
+   TIPOELEMENTOS        varchar(100)          not null,
+   MEDIDA               varchar(100)          not null,
+   UNIDAD               varchar(100)          not null,
+   PORSUELTOS           bit                  not null,
+   PORCENTAJEVENTAENVASE numeric              not null,
+   PORCENTAJEVENTASUELTO numeric              null,
+   PROMOCION            numeric              null,
+   STOCKMINIMO          numeric              null,
+   STOCKMAXIMO          numeric              null,
+   BORRADO              bit                  not null,
+   COMPUESTO            text                  not null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_PRODUCTO                                       */
+/*==============================================================*/
+create unique clustered index PK_ejs_PRODUCTO on dbo.ejs_PRODUCTO (
+PRODUCTOID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_PROFDETALLE                                       */
+/*==============================================================*/
+create table dbo.ejs_PROFDETALLE (
+   PROFDETALLEID        numeric              identity(1, 1),
+   PROFORMAID           int                  not null,
+   PRODUCTOID           varchar(50)           not null,
+   PRECIOUNITARIO       money                not null,
+   CANTIDAD             int                  not null,
+   SUELTOS              bit                  not null,
+   DESCUENTO            int                  not null constraint DF_ejs_PROFDETALLE_DESCUENTO default (0)
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_PROFDETALLE                                    */
+/*==============================================================*/
+create unique clustered index PK_ejs_PROFDETALLE on dbo.ejs_PROFDETALLE (
+PROFDETALLEID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_PROFORMA                                          */
+/*==============================================================*/
+create table dbo.ejs_PROFORMA (
+   PROFORMAID           int                  identity(1, 1),
+   SUCURSALID           int                  not null,
+   USUARIOID            int                  not null,
+   FECHALIMITE          datetime             not null,
+   FECHAEMISION         datetime             not null,
+   CLIENTE              varchar(50)           not null,
+   NUMERO               int                  not null constraint DF_ejs_PROFORMA_NUMERO default (0),
+   EJECUTADA            bit                  not null constraint DF_ejs_PROFORMA_EJECUTADA default (0),
+   CLIENTEID            int                  not null constraint DF_ejs_PROFORMA_CLIENTEID default (0)
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_PROFORMA                                       */
+/*==============================================================*/
+create unique clustered index PK_ejs_PROFORMA on dbo.ejs_PROFORMA (
+PROFORMAID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_PROVEEDOR                                         */
+/*==============================================================*/
+create table dbo.ejs_PROVEEDOR (
+   PROVEEDORID          numeric              identity(1, 1),
+   NOMRAZON             varchar(200)          not null,
+   DIRECCION            varchar(200)          not null,
+   REPRESENTANTE        varchar(200)          not null,
+   TELEFONO             varchar(200)          not null,
+   FACTURAINICIAL       int                  null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_PROVEEDOR                                      */
+/*==============================================================*/
+create unique clustered index PK_ejs_PROVEEDOR on dbo.ejs_PROVEEDOR (
+PROVEEDORID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_REGION                                            */
+/*==============================================================*/
+create table dbo.ejs_REGION (
+   REGIONID             numeric              identity(1, 1),
+   LUGAR                varchar(100)          not null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_REGION                                         */
+/*==============================================================*/
+create unique clustered index PK_ejs_REGION on dbo.ejs_REGION (
+REGIONID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_SNIDATA                                           */
+/*==============================================================*/
+create table dbo.ejs_SNIDATA (
+   SNIID                numeric              identity(1, 1),
+   LLAVE                varchar(200)          not null,
+   AUTORIZACION         varchar(20)           not null,
+   FECHAINICIO          datetime             not null,
+   FECHAFIN             datetime             not null,
+   FACTURAINICIAL       int                  null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_SNIDATA                                        */
+/*==============================================================*/
+create unique clustered index PK_ejs_SNIDATA on dbo.ejs_SNIDATA (
+SNIID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_SUCURSAL                                          */
+/*==============================================================*/
+create table dbo.ejs_SUCURSAL (
+   SUCURSALID           numeric              identity(1, 1),
+   REGIONID             numeric              null,
+   ZONA                 varchar(100)          not null,
+   DIRECCION            varchar(100)          not null,
+   CASAMATRIZ           bit                  not null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_SUCURSAL                                       */
+/*==============================================================*/
+create unique clustered index PK_ejs_SUCURSAL on dbo.ejs_SUCURSAL (
+SUCURSALID ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_ZONAS                                             */
+/*==============================================================*/
+create table dbo.ejs_ZONAS (
+   unidadid             int                  identity(1, 1),
+   descripcion          varchar(50)           not null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: PK_ejs_ZONAS                                          */
+/*==============================================================*/
+create unique clustered index PK_ejs_ZONAS on dbo.ejs_ZONAS (
+unidadid ASC
+)
+go
+
+/*==============================================================*/
+/* Table: ejs_ZONAS1                                            */
+/*==============================================================*/
+create table dbo.ejs_ZONAS1 (
+   ZONADETALLEID        int                  not null,
+   USERID               numeric              not null,
+   UNIDADID             int                  not null,
+   DESCRIPCION          varchar(50)           not null
+)
+on "PRIMARY"
+go
+
+/*==============================================================*/
+/* Index: ejs_ZONAS1_PK                                         */
+/*==============================================================*/
+create unique clustered index ejs_ZONAS1_PK on dbo.ejs_ZONAS1 (
+ZONADETALLEID ASC
+)
+go
+
+/*==============================================================*/
+/* View: ejs_VWBENEFICIARIO                                     */
+/*==============================================================*/
+create view dbo.ejs_VWBENEFICIARIO as
+SELECT     cli.CLIENTE, ben.NOMBRE AS beneficiario, ben.NIT, ben.FECHAREG AS Fecha, ben.BENEFICIARIOID
+FROM         dbo.ejs_CLIENTE AS cli INNER JOIN
+dbo.ejs_BENEFICIARIO AS ben ON cli.CLIENTEID = ben.CLIENTEID
+go
+
+/*==============================================================*/
+/* View: ejs_VWBuscaProducto                                    */
+/*==============================================================*/
+create view dbo.ejs_VWBuscaProducto as
+select
+   p.PRODUCTOID,
+   p.NOMBREGENERICO,
+   p.NOMBRECOMERCIAL,
+   p.COMPUESTO,
+   p.DETALLES,
+   p.PRECIOCOMPRA,
+   p.BORRADO,
+   l.LOTEID,
+   l.ESTADO,
+   a.ALMACENID,
+   a.SUCURSALID,
+   prov.NOMRAZON,
+   m.EMPRESA,
+   K.STOCKACTUALENVASE,
+   K.STOCKACTUALSUELTO
+from
+   dbo.ejs_PRODUCTO p
+   INNER JOIN dbo.ejs_LOTE l on  p.PRODUCTOID = l.PRODUCTOID
+   INNER JOIN dbo.ejs_KARDEX K on  p.PRODUCTOID = K.PRODUCTOID AND l.LOTEID = K.LOTEID
+   INNER JOIN dbo.ejs_ALMACEN a on  K.ALMACENID = a.ALMACENID
+   INNER JOIN dbo.ejs_MARCA m on  p.MARCAID = m.MARCAID
+   INNER JOIN dbo.ejs_PROVEEDOR prov on  m.PROVEEDORID = prov.PROVEEDORID
+where
+   (l.ESTADO = 'TRUE')
+   AND ( K.KARDEXID IN (SELECT MAX(KARDEXID) AS Expr1 FROM dbo.ejs_KARDEX AS K GROUP BY PRODUCTOID, ALMACENID))
+   AND ( K.STOCKACTUALENVASE > 0)
+   OR ( l.ESTADO = 'TRUE')
+   AND ( K.KARDEXID IN (SELECT MAX(KARDEXID) AS Expr1 FROM dbo.ejs_KARDEX AS K GROUP BY PRODUCTOID, ALMACENID))
+   AND ( K.STOCKACTUALSUELTO > 0)
+go
+
+/*==============================================================*/
+/* View: ejs_VWDATAKARDEX                                       */
+/*==============================================================*/
+create view dbo.ejs_VWDATAKARDEX as
+SELECT CAST(P.DETALLES AS VARCHAR(500)) AS INSUMO, K1.STOCKACTUALENVASE, K1.FECHAREGISTRO  
+FROM ejs_KARDEX K1 INNER JOIN ejs_PRODUCTO P ON K1.PRODUCTOID = P.PRODUCTOID  
+WHERE K1.KARDEXID IN (
+SELECT MAX(k.kardexid)FROM ejs_KARDEX k 
+GROUP BY k.PRODUCTOID )
+go
+
+/*==============================================================*/
+/* View: ejs_VWDavinci                                          */
+/*==============================================================*/
+create view dbo.ejs_VWDavinci (NIT, NOMBRE, NUMERO, AUTORIZACION, FECHAEMISION, monto, CODIGOSEGURIDAD) as
+SELECT     TOP (100) PERCENT b.NIT, b.NOMBRE, F.NUMERO, F.AUTORIZACION, F.FECHAEMISION, 
+					  SUM(D.CANTIDAD * (D.PRECIOUNITARIO - D.PRECIOUNITARIO * D.DESCUENTO)) AS monto, F.CODIGOSEGURIDAD
+FROM         dbo.ejs_FACTURA AS F INNER JOIN
+					  dbo.ejs_DETALLE AS D ON F.nCodFactura = D.nCodFactura INNER JOIN
+					  dbo.ejs_BENEFICIARIO AS b ON b.BENEFICIARIOID = F.BENEFICIARIOID
+WHERE     (F.ANULADO = 0) AND (F.FECHAEMISION BETWEEN '2014-03-01' AND '2014-03-31')
+GROUP BY b.NIT, b.NOMBRE, F.NUMERO, F.AUTORIZACION, F.FECHAEMISION, F.CODIGOSEGURIDAD
+ORDER BY F.NUMERO
+go
+
+/*==============================================================*/
+/* View: ejs_VWVentasPorZonas                                   */
+/*==============================================================*/
+create view dbo.ejs_VWVentasPorZonas as
+SELECT     dbo.ejs_FACTURA.VENDEDORID, dbo.ejs_EMPLEADO.NOMBRES, dbo.ejs_EMPLEADO.APELLIDOS, dbo.ejs_FACTURA.FECHAEMISION, 
+					  dbo.ejs_CLIENTE.CLIENTE, dbo.ejs_CLIENTE.DIRECCION, dbo.ejs_CLIENTE.TELEFONO, dbo.ejs_DETALLE.CANTIDAD, 
+					  dbo.ejs_PRODUCTO.NOMBRECOMERCIAL, dbo.ejs_DETALLE.PRECIOUNITARIO, 
+					  (dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO * dbo.ejs_DETALLE.DESCUENTO) 
+					  * dbo.ejs_DETALLE.CANTIDAD AS TOTAL
+FROM         dbo.ejs_EMPLEADO INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_EMPLEADO.EMPLEADOID = dbo.ejs_FACTURA.VENDEDORID INNER JOIN
+					  dbo.ejs_CLIENTE ON dbo.ejs_FACTURA.NIT = dbo.ejs_CLIENTE.NIT INNER JOIN
+					  dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura INNER JOIN
+					  dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID
+WHERE     (dbo.ejs_FACTURA.ANULADO = 0)
+go
+
+/*==============================================================*/
+/* View: ejs_VwClientes                                         */
+/*==============================================================*/
+create view dbo.ejs_VwClientes (CLIENTE, Expr2, Expr1, TOTAL) as
+SELECT     TOP (100) PERCENT dbo.ejs_CLIENTE.CLIENTE, CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(500)) AS Expr2, 
+					  SUM(dbo.ejs_DETALLE.CANTIDAD) AS Expr1, 
+					  SUM((dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO * dbo.ejs_DETALLE.DESCUENTO) 
+					  * dbo.ejs_DETALLE.CANTIDAD) AS TOTAL
+FROM         dbo.ejs_CLIENTE INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_CLIENTE.NIT = dbo.ejs_FACTURA.NIT INNER JOIN
+					  dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura INNER JOIN
+					  dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID
+WHERE     (dbo.ejs_FACTURA.CODIGOSEGURIDAD <> '') AND (dbo.ejs_FACTURA.ANULADO = 0)
+GROUP BY dbo.ejs_CLIENTE.CLIENTE, CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(500))
+ORDER BY dbo.ejs_CLIENTE.CLIENTE
+go
+
+/*==============================================================*/
+/* View: ejs_VwClientesEnMora                                   */
+/*==============================================================*/
+create view dbo.ejs_VwClientesEnMora as
+SELECT     dbo.ejs_FACTURA.nCodFactura, dbo.ejs_FACTURA.SUCURSALID, 
+					  dbo.ejs_EMPLEADO.NOMBRES + ' ' + dbo.ejs_EMPLEADO.APELLIDOS AS VENDEDOR, dbo.ejs_CLIENTE.CLIENTEID, 
+					  dbo.ejs_CLIENTE.CLIENTE, dbo.ejs_FACTURA.FECHAVENCIMIENTO, dbo.ejs_FACTURA.PAGADA
+FROM         dbo.ejs_FACTURA INNER JOIN
+					  dbo.ejs_EMPLEADO ON dbo.ejs_FACTURA.VENDEDORID = dbo.ejs_EMPLEADO.EMPLEADOID INNER JOIN
+					  dbo.ejs_CLIENTE ON dbo.ejs_FACTURA.CLIENTEID = dbo.ejs_CLIENTE.CLIENTEID
+WHERE     (dbo.ejs_FACTURA.PAGADA = 'False') AND (dbo.ejs_FACTURA.ANULADO = 0)
+go
+
+/*==============================================================*/
+/* View: ejs_VwConsoPagos                                       */
+/*==============================================================*/
+create view dbo.ejs_VwConsoPagos as
+SELECT DISTINCT CLIENTE, VENDEDOR, SUM(MONTOTOTAL) AS MONTOTOTAL
+FROM         (SELECT DISTINCT C.CLIENTEID, C.CLIENTE, E.NOMBRES + ' ' + E.APELLIDOS AS VENDEDOR, SUM(P.MONTO) AS MONTOTOTAL, P.FECHAPAGO
+					   FROM          dbo.ejs_PAGO AS P INNER JOIN
+											  dbo.ejs_FACTURA AS F ON P.nCodFactura = F.nCodFactura INNER JOIN
+											  dbo.ejs_CLIENTE AS C ON F.CLIENTEID = C.CLIENTEID INNER JOIN
+											  dbo.ejs_EMPLEADO AS E ON P.VENDEDORID = E.EMPLEADOID
+					   GROUP BY C.CLIENTEID, C.CLIENTE, E.NOMBRES, E.APELLIDOS, P.FECHAPAGO) AS PP
+GROUP BY CLIENTE, VENDEDOR
+go
+
+/*==============================================================*/
+/* View: ejs_VwDebe                                             */
+/*==============================================================*/
+create view dbo.ejs_VwDebe as
+SELECT     dbo.ejs_FACTURA.nCodFactura, 
+					  SUM(dbo.ejs_DETALLE.CANTIDAD * (dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO * dbo.ejs_DETALLE.DESCUENTO))
+					   AS debe
+FROM         dbo.ejs_DETALLE INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_DETALLE.nCodFactura = dbo.ejs_FACTURA.nCodFactura
+WHERE     (dbo.ejs_FACTURA.ANULADO = 0)
+GROUP BY dbo.ejs_FACTURA.nCodFactura
+go
+
+/*==============================================================*/
+/* View: ejs_VwHaber                                            */
+/*==============================================================*/
+create view dbo.ejs_VwHaber as
+SELECT     dbo.ejs_FACTURA.nCodFactura, SUM(dbo.ejs_PAGO.MONTO) AS haber
+FROM         dbo.ejs_PAGO INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_PAGO.nCodFactura
+WHERE     (dbo.ejs_FACTURA.ANULADO = 0)
+GROUP BY dbo.ejs_FACTURA.nCodFactura
+go
+
+/*==============================================================*/
+/* View: ejs_VwCuentasClientes                                  */
+/*==============================================================*/
+create view dbo.ejs_VwCuentasClientes as
+SELECT     dbo.ejs_FACTURA.nCodFactura, dbo.ejs_CLIENTE.CLIENTEID, dbo.ejs_CLIENTE.CLIENTE, dbo.ejs_FACTURA.NUMERO, 
+					  dbo.ejs_FACTURA.SUCURSALID, dbo.ejs_FACTURA.FECHAEMISION, dbo.ejs_FACTURA.FECHAVENCIMIENTO, dbo.ejs_VwDebe.debe, 
+					  ISNULL(CAST(dbo.ejs_VwHaber.haber AS money), 0) AS Haber
+FROM         dbo.ejs_CLIENTE INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_CLIENTE.CLIENTEID = dbo.ejs_FACTURA.CLIENTEID LEFT OUTER JOIN
+					  dbo.ejs_VwDebe ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_VwDebe.nCodFactura LEFT OUTER JOIN
+					  dbo.ejs_VwHaber ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_VwHaber.nCodFactura
+WHERE     (dbo.ejs_FACTURA.ANULADO = 0)
+go
+
+/*==============================================================*/
+/* View: ejs_VwDeudas                                           */
+/*==============================================================*/
+create view dbo.ejs_VwDeudas as
+SELECT     C.CLIENTEID, C.CLIENTE, e.NOMBRES + ' ' + e.APELLIDOS AS VENDEDOR, FA.nCodFactura, FA.NUMERO, FA.FECHAEMISION AS Emitida, 
+					  FA.FECHAVENCIMIENTO AS Vence, FA.TOTALFACTURA - PA.TOTALPAGADO AS Deuda
+FROM         (SELECT     F.nCodFactura, F.CLIENTEID, F.NUMERO, F.FECHAEMISION, F.FECHAVENCIMIENTO, 
+											  SUM(D.CANTIDAD * (D.PRECIOUNITARIO - D.PRECIOUNITARIO * D.DESCUENTO)) AS TOTALFACTURA
+					   FROM          dbo.ejs_FACTURA AS F INNER JOIN
+											  dbo.ejs_DETALLE AS D ON F.nCodFactura = D.nCodFactura
+					   WHERE      (F.ANULADO = 0) AND (F.PAGADA = 0)
+					   GROUP BY F.nCodFactura, F.CLIENTEID, F.NUMERO, F.FECHAEMISION, F.FECHAVENCIMIENTO) AS FA INNER JOIN
+						  (SELECT     F.nCodFactura, SUM(ISNULL(P.MONTO, 0)) AS TOTALPAGADO
+							FROM          dbo.ejs_PAGO AS P RIGHT OUTER JOIN
+												   dbo.ejs_FACTURA AS F ON P.nCodFactura = F.nCodFactura
+							WHERE      (F.ANULADO = 0) AND (F.PAGADA = 0)
+							GROUP BY F.nCodFactura) AS PA ON FA.nCodFactura = PA.nCodFactura INNER JOIN
+					  dbo.ejs_CLIENTE AS C ON FA.CLIENTEID = C.CLIENTEID INNER JOIN
+					  dbo.ejs_EMPLEADO AS e ON C.USERID = e.EMPLEADOID
+WHERE     (FA.TOTALFACTURA - PA.TOTALPAGADO > 0.009900)
+go
+
+/*==============================================================*/
+/* View: ejs_VwDeudas1                                          */
+/*==============================================================*/
+create view dbo.ejs_VwDeudas1 as
+SELECT     C.CLIENTEID, C.CLIENTE, e.NOMBRES + ' ' + e.APELLIDOS AS VENDEDOR, FA.nCodFactura, FA.NUMERO, FA.FECHAEMISION AS Emitida, 
+					  FA.FECHAVENCIMIENTO AS Vence, FA.TOTALFACTURA - PA.TOTALPAGADO AS Deuda, C.R, FA.FP
+FROM         (SELECT     F.nCodFactura, F.CLIENTEID, F.NUMERO, F.FECHAEMISION, F.FECHAVENCIMIENTO, F.FP, 
+											  SUM(D.CANTIDAD * (D.PRECIOUNITARIO - D.PRECIOUNITARIO * D.DESCUENTO)) AS TOTALFACTURA
+					   FROM          dbo.ejs_FACTURA AS F INNER JOIN
+											  dbo.ejs_DETALLE AS D ON F.nCodFactura = D.nCodFactura
+					   WHERE      (F.ANULADO = 0)
+					   GROUP BY F.nCodFactura, F.CLIENTEID, F.NUMERO, F.FECHAEMISION, F.FECHAVENCIMIENTO, F.FP) AS FA INNER JOIN
+						  (SELECT     F.nCodFactura, SUM(ISNULL(P.MONTO, 0)) AS TOTALPAGADO
+							FROM          dbo.ejs_PAGO AS P RIGHT OUTER JOIN
+												   dbo.ejs_FACTURA AS F ON P.nCodFactura = F.nCodFactura
+							WHERE      (F.ANULADO = 0)
+							GROUP BY F.nCodFactura) AS PA ON FA.nCodFactura = PA.nCodFactura INNER JOIN
+					  dbo.ejs_CLIENTE AS C ON FA.CLIENTEID = C.CLIENTEID INNER JOIN
+					  dbo.ejs_EMPLEADO AS e ON C.USERID = e.EMPLEADOID
+go
+
+/*==============================================================*/
+/* View: ejs_VwDeudasReporte                                    */
+/*==============================================================*/
+create view dbo.ejs_VwDeudasReporte as
+SELECT     e.EMPLEADOID, C.CLIENTEID, C.CLIENTE, e.NOMBRES + ' ' + e.APELLIDOS AS VENDEDOR, FA.nCodFactura, FA.NUMERO, 
+					  FA.FECHAEMISION AS EMITIDA, FA.FECHAVENCIMIENTO AS VENCE, PA.TOTALPAGADO, FA.TOTALFACTURA, 
+					  FA.TOTALFACTURA - PA.TOTALPAGADO AS DEUDA, FA.PRECIO, FA.TOTALCANTIDAD, PRO.NOMBRECOMERCIAL AS PRODUCTO
+FROM         (SELECT     F.nCodFactura, F.CLIENTEID, PROD.PRODUCTOID, F.NUMERO, F.FECHAEMISION, F.FECHAVENCIMIENTO, 
+											  SUM(D.CANTIDAD * (D.PRECIOUNITARIO - D.PRECIOUNITARIO * D.DESCUENTO)) AS TOTALFACTURA, D.PRECIOUNITARIO AS PRECIO, 
+											  SUM(D.CANTIDAD) AS TOTALCANTIDAD
+					   FROM          dbo.ejs_FACTURA AS F INNER JOIN
+											  dbo.ejs_DETALLE AS D ON F.nCodFactura = D.nCodFactura INNER JOIN
+											  dbo.ejs_PRODUCTO AS PROD ON D.PRODUCTOID = PROD.PRODUCTOID
+					   WHERE      (F.ANULADO = 0)
+					   GROUP BY F.nCodFactura, F.CLIENTEID, PROD.PRODUCTOID, F.NUMERO, F.FECHAEMISION, F.FECHAVENCIMIENTO, D.PRECIOUNITARIO, 
+											  D.PRODUCTOID) AS FA INNER JOIN
+						  (SELECT     F.nCodFactura, SUM(ISNULL(P.MONTO, 0)) AS TOTALPAGADO
+							FROM          dbo.ejs_PAGO AS P RIGHT OUTER JOIN
+												   dbo.ejs_FACTURA AS F ON P.nCodFactura = F.nCodFactura
+							WHERE      (F.ANULADO = 0)
+							GROUP BY F.nCodFactura) AS PA ON FA.nCodFactura = PA.nCodFactura INNER JOIN
+					  dbo.ejs_CLIENTE AS C ON FA.CLIENTEID = C.CLIENTEID INNER JOIN
+					  dbo.ejs_EMPLEADO AS e ON C.USERID = e.EMPLEADOID INNER JOIN
+					  dbo.ejs_PRODUCTO AS PRO ON FA.PRODUCTOID = PRO.PRODUCTOID
+go
+
+/*==============================================================*/
+/* View: ejs_VwPagos                                            */
+/*==============================================================*/
+create view dbo.ejs_VwPagos as
+SELECT     dbo.ejs_PAGO.PAGOID, dbo.ejs_CLIENTE.CLIENTE, dbo.ejs_FACTURA.NUMERO, dbo.ejs_PAGO.FECHAPAGO, dbo.ejs_PAGO.MONTO, 
+					  (CASE WHEN dbo.ejs_PAGO.USACHEQUE = 'True' THEN 'Cheque' ELSE 'Contado' END) AS FORMAPAGO, 
+					  dbo.ejs_EMPLEADO.NOMBRES + ' ' + dbo.ejs_EMPLEADO.APELLIDOS AS VENDEDOR, dbo.ejs_FACTURA.SUCURSALID, 
+					  dbo.ejs_CLIENTE.CLIENTEID
+FROM         dbo.ejs_PAGO INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_PAGO.nCodFactura = dbo.ejs_FACTURA.nCodFactura INNER JOIN
+					  dbo.ejs_CLIENTE ON dbo.ejs_FACTURA.CLIENTEID = dbo.ejs_CLIENTE.CLIENTEID INNER JOIN
+					  dbo.ejs_EMPLEADO ON dbo.ejs_PAGO.VENDEDORID = dbo.ejs_EMPLEADO.EMPLEADOID
+WHERE     (dbo.ejs_FACTURA.ANULADO = 0)
+go
+
+/*==============================================================*/
+/* View: ejs_VwProductoPedido                                   */
+/*==============================================================*/
+create view dbo.ejs_VwProductoPedido as
+select ejs_PRODUCTO.PRODUCTOID, CAST(DETALLES as Varchar(500)) as Producto, 
+PRECIOCOMPRA ,
+FALTANTE=1
+from ejs_PRODUCTO 
+INNER JOIN 
+(select dbo.ejs_KARDEX.PRODUCTOID,dbo.ejs_PRODUCTO.NOMBREGENERICO,
+dbo.ejs_PRODUCTO.NOMBRECOMERCIAL, dbo.ejs_KARDEX.STOCKACTUALENVASE, 
+dbo.ejs_PRODUCTO.STOCKMINIMO from dbo.ejs_KARDEX,dbo.ejs_PRODUCTO,dbo.ejs_LOTE
+where dbo.ejs_KARDEX.PRODUCTOID=dbo.ejs_PRODUCTO.PRODUCTOID and
+dbo.ejs_LOTE.PRODUCTOID=dbo.ejs_PRODUCTO.PRODUCTOID and
+dbo.ejs_KARDEX.STOCKACTUALENVASE<=dbo.ejs_PRODUCTO.STOCKMINIMO and
+dbo.ejs_KARDEX.KARDEXID in
+(select Max(dbo.ejs_KARDEX.KARDEXID) from dbo.ejs_KARDEX 
+where dbo.ejs_KARDEX.ALMACENID=1 group by dbo.ejs_KARDEX.PRODUCTOID)
+group by dbo.ejs_KARDEX.PRODUCTOID,dbo.ejs_PRODUCTO.NOMBREGENERICO,
+dbo.ejs_PRODUCTO.NOMBRECOMERCIAL,dbo.ejs_PRODUCTO.STOCKMINIMO, 
+dbo.ejs_KARDEX.STOCKACTUALENVASE) as ejs_AUX
+ON ejs_PRODUCTO.PRODUCTOID=ejs_AUX.PRODUCTOID 
+UNION
+select ejs_PRODUCTO.PRODUCTOID, CAST(DETALLES as Varchar(500)) as Producto, 
+PRECIOCOMPRA, FALTANTE=0
+from ejs_PRODUCTO 
+WHERE PRODUCTOID not in 
+(select dbo.ejs_KARDEX.PRODUCTOID from dbo.ejs_KARDEX,dbo.ejs_PRODUCTO,
+dbo.ejs_LOTE where dbo.ejs_KARDEX.PRODUCTOID=dbo.ejs_PRODUCTO.PRODUCTOID and
+dbo.ejs_LOTE.PRODUCTOID=dbo.ejs_PRODUCTO.PRODUCTOID and
+dbo.ejs_KARDEX.STOCKACTUALENVASE<=dbo.ejs_PRODUCTO.STOCKMINIMO and
+dbo.ejs_KARDEX.KARDEXID in
+(select Max(dbo.ejs_KARDEX.KARDEXID) from dbo.ejs_KARDEX
+where dbo.ejs_KARDEX.ALMACENID=1 group by dbo.ejs_KARDEX.PRODUCTOID)
+group by dbo.ejs_KARDEX.PRODUCTOID)
+go
+
+/*==============================================================*/
+/* View: ejs_VwRepVentasClientes                                */
+/*==============================================================*/
+create view dbo.ejs_VwRepVentasClientes (CLIENTEID, CLIENTE, SUCURSALID, FECHAEMISION, NUMERO, Producto, CANTIDAD, TOTAL) as
+SELECT     TOP (100) PERCENT dbo.ejs_CLIENTE.CLIENTEID, dbo.ejs_CLIENTE.CLIENTE, dbo.ejs_SUCURSAL.SUCURSALID, 
+					  dbo.ejs_FACTURA.FECHAEMISION, dbo.ejs_FACTURA.NUMERO, CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1024)) AS Producto, 
+					  dbo.ejs_DETALLE.CANTIDAD, 
+					  SUM(dbo.ejs_DETALLE.CANTIDAD * (dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO * dbo.ejs_DETALLE.DESCUENTO))
+					   AS TOTAL
+FROM         dbo.ejs_PRODUCTO INNER JOIN
+					  dbo.ejs_DETALLE ON dbo.ejs_PRODUCTO.PRODUCTOID = dbo.ejs_DETALLE.PRODUCTOID INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_DETALLE.nCodFactura = dbo.ejs_FACTURA.nCodFactura INNER JOIN
+					  dbo.ejs_SUCURSAL ON dbo.ejs_FACTURA.SUCURSALID = dbo.ejs_SUCURSAL.SUCURSALID INNER JOIN
+					  dbo.ejs_CLIENTE ON dbo.ejs_CLIENTE.CLIENTEID = dbo.ejs_FACTURA.CLIENTEID
+WHERE     (dbo.ejs_FACTURA.ANULADO = 0)
+GROUP BY dbo.ejs_CLIENTE.CLIENTEID, dbo.ejs_CLIENTE.CLIENTE, dbo.ejs_SUCURSAL.SUCURSALID, dbo.ejs_FACTURA.NUMERO, 
+					  dbo.ejs_FACTURA.FECHAEMISION, CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1024)), dbo.ejs_DETALLE.CANTIDAD
+ORDER BY dbo.ejs_FACTURA.FECHAEMISION, dbo.ejs_DETALLE.CANTIDAD DESC
+go
+
+/*==============================================================*/
+/* View: ejs_VwRepVentasGTerapeutico                            */
+/*==============================================================*/
+create view dbo.ejs_VwRepVentasGTerapeutico as
+SELECT     dbo.ejs_GRUPOTERAPEUTICO.GRUPOCODIGO, dbo.ejs_GRUPOTERAPEUTICO.GRUPOMEDICO, dbo.ejs_PRODUCTO.PRODUCTOID, 
+					  CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(500)) AS DETALLES, dbo.ejs_SUCURSAL.SUCURSALID, dbo.ejs_FACTURA.FECHAEMISION, 
+					  SUM(dbo.ejs_DETALLE.CANTIDAD) AS CANTIDAD, 
+					  SUM(dbo.ejs_DETALLE.CANTIDAD * (dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO * dbo.ejs_DETALLE.DESCUENTO))
+					   AS TOTAL
+FROM         dbo.ejs_PRODUCTO INNER JOIN
+					  dbo.ejs_DETALLE ON dbo.ejs_PRODUCTO.PRODUCTOID = dbo.ejs_DETALLE.PRODUCTOID INNER JOIN
+					  dbo.ejs_GRUPOTERAPEUTICO ON dbo.ejs_PRODUCTO.GRUPOCODIGO = dbo.ejs_GRUPOTERAPEUTICO.GRUPOCODIGO INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_DETALLE.nCodFactura = dbo.ejs_FACTURA.nCodFactura INNER JOIN
+					  dbo.ejs_SUCURSAL ON dbo.ejs_FACTURA.SUCURSALID = dbo.ejs_SUCURSAL.SUCURSALID
+WHERE     (dbo.ejs_FACTURA.ANULADO = 0)
+GROUP BY dbo.ejs_PRODUCTO.PRODUCTOID, dbo.ejs_GRUPOTERAPEUTICO.GRUPOCODIGO, dbo.ejs_GRUPOTERAPEUTICO.GRUPOMEDICO, 
+					  dbo.ejs_SUCURSAL.SUCURSALID, dbo.ejs_FACTURA.FECHAEMISION, CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(500))
+go
+
+/*==============================================================*/
+/* View: ejs_VwRepVentasProductos                               */
+/*==============================================================*/
+create view dbo.ejs_VwRepVentasProductos as
+SELECT     dbo.ejs_PRODUCTO.PRODUCTOID, CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(500)) AS DETALLES, dbo.ejs_SUCURSAL.SUCURSALID, 
+					  dbo.ejs_FACTURA.NUMERO, dbo.ejs_FACTURA.FECHAEMISION, dbo.ejs_DETALLE.CANTIDAD, 
+					  SUM(dbo.ejs_DETALLE.CANTIDAD * (dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO * dbo.ejs_DETALLE.DESCUENTO))
+					   AS TOTAL
+FROM         dbo.ejs_PRODUCTO INNER JOIN
+					  dbo.ejs_DETALLE ON dbo.ejs_PRODUCTO.PRODUCTOID = dbo.ejs_DETALLE.PRODUCTOID INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_DETALLE.nCodFactura = dbo.ejs_FACTURA.nCodFactura INNER JOIN
+					  dbo.ejs_SUCURSAL ON dbo.ejs_FACTURA.SUCURSALID = dbo.ejs_SUCURSAL.SUCURSALID
+WHERE     (dbo.ejs_FACTURA.ANULADO = 0)
+GROUP BY dbo.ejs_PRODUCTO.PRODUCTOID, CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(500)), dbo.ejs_SUCURSAL.SUCURSALID, 
+					  dbo.ejs_FACTURA.NUMERO, dbo.ejs_FACTURA.FECHAEMISION, dbo.ejs_DETALLE.CANTIDAD
+go
+
+/*==============================================================*/
+/* View: ejs_VwReporteKardex                                    */
+/*==============================================================*/
+create view dbo.ejs_VwReporteKardex as
+SELECT k.KARDEXID,k.GLOSA, k.FECHAREGISTRO, p.DETALLES, k.ALMACENID,k.PRECIOCOMPRA, k.STOCKANTERIORENVASE, 
+k.STOCKACTUALENVASE, k.STOCKANTERIORB, k.STOCKACTUALB, k.STOCKANTERIORr, k.STOCKACTUALR, k.OBSERVACION, p.PRODUCTOID   
+from ejs_KARDEX k inner join ejs_PRODUCTO p on p.PRODUCTOID=k.PRODUCTOID
+go
+
+/*==============================================================*/
+/* View: ejs_VwReporteProductos                                 */
+/*==============================================================*/
+create view dbo.ejs_VwReporteProductos as
+SELECT     CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1000)) AS PRODUCTO, SUM(dbo.ejs_DETALLE.CANTIDAD) AS CANTIDAD, 
+					  SUM((dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO * dbo.ejs_DETALLE.DESCUENTO) 
+					  * dbo.ejs_DETALLE.CANTIDAD) AS [TOTAL (BS.)]
+FROM         dbo.ejs_DETALLE INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_DETALLE.nCodFactura = dbo.ejs_FACTURA.nCodFactura INNER JOIN
+					  dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID
+WHERE     (dbo.ejs_FACTURA.CODIGOSEGURIDAD <> '') AND (dbo.ejs_FACTURA.ANULADO = 0)
+GROUP BY CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1000))
+go
+
+/*==============================================================*/
+/* View: ejs_VwSoloClientes                                     */
+/*==============================================================*/
+create view dbo.ejs_VwSoloClientes as
+SELECT     TOP (100) PERCENT CLIENTE
+FROM         dbo.ejs_CLIENTE
+ORDER BY CLIENTE
+go
+
+/*==============================================================*/
+/* View: ejs_VwVentasPorVendedor                                */
+/*==============================================================*/
+create view dbo.ejs_VwVentasPorVendedor (CLIENTEID, nCodFactura, EMPLEADOID, CLIENTE, VENDEDOR, FECHAEMISION, PRODUCTO, CANTIDAD, TOTAL) as
+SELECT     TOP (100) PERCENT C.CLIENTEID, F.nCodFactura, E.EMPLEADOID, C.CLIENTE, E.NOMBRES + ' ' + E.APELLIDOS AS VENDEDOR, F.FECHAEMISION, 
+					  CAST(P.DETALLES AS varchar(1024)) AS PRODUCTO, D.CANTIDAD, SUM(D.CANTIDAD * (D.PRECIOUNITARIO - D.PRECIOUNITARIO * D.DESCUENTO)) 
+					  AS TOTAL
+FROM         dbo.ejs_PRODUCTO AS P INNER JOIN
+					  dbo.ejs_DETALLE AS D ON P.PRODUCTOID = D.PRODUCTOID INNER JOIN
+					  dbo.ejs_FACTURA AS F ON D.nCodFactura = F.nCodFactura INNER JOIN
+					  dbo.ejs_SUCURSAL AS S ON F.SUCURSALID = S.SUCURSALID INNER JOIN
+					  dbo.ejs_CLIENTE AS C ON C.CLIENTEID = F.CLIENTEID INNER JOIN
+					  dbo.ejs_EMPLEADO AS E ON F.VENDEDORID = E.EMPLEADOID
+WHERE     (F.ANULADO = 0)
+GROUP BY C.CLIENTEID, C.CLIENTE, S.SUCURSALID, F.NUMERO, F.FECHAEMISION, CAST(P.DETALLES AS varchar(1024)), D.CANTIDAD, E.NOMBRES, 
+					  E.APELLIDOS, F.nCodFactura, E.EMPLEADOID
+ORDER BY F.FECHAEMISION, D.CANTIDAD DESC
+go
+
+/*==============================================================*/
+/* View: ejs_vwBuscaKardex                                      */
+/*==============================================================*/
+create view dbo.ejs_vwBuscaKardex as
+select
+   dbo.ejs_ALMACEN.ALMACENID,
+   dbo.ejs_EMPLEADO.USERID,
+   dbo.ejs_EMPLEADO.EMPLEADOID,
+   dbo.ejs_ACTIVIDAD.ACTIVIDADID,
+   dbo.ejs_SUCURSAL.SUCURSALID,
+   dbo.ejs_KARDEX.PRODUCTOID,
+   dbo.ejs_KARDEX.FECHAREGISTRO,
+   dbo.ejs_KARDEX.GLOSA,
+   dbo.ejs_KARDEX.PRECIOALMACEN,
+   dbo.ejs_KARDEX.ENTRADA,
+   dbo.ejs_KARDEX.SALIDA,
+   dbo.ejs_KARDEX.STOCKANTERIORENVASE,
+   dbo.ejs_KARDEX.STOCKACTUALENVASE,
+   dbo.ejs_KARDEX.STOCKANTERIORSUELTO,
+   dbo.ejs_KARDEX.STOCKACTUALSUELTO,
+   dbo.ejs_KARDEX.VALORTOTAL,
+   dbo.ejs_KARDEX.OBSERVACION,
+   dbo.ejs_KARDEX.KARDEXID,
+   dbo.ejs_ALMACEN.JEFEALMACEN
+from
+   dbo.ejs_ALMACEN
+   INNER JOIN dbo.ejs_KARDEX on  dbo.ejs_ALMACEN.ALMACENID = dbo.ejs_KARDEX.ALMACENID
+   INNER JOIN dbo.ejs_SUCURSAL on  dbo.ejs_ALMACEN.SUCURSALID = dbo.ejs_SUCURSAL.SUCURSALID
+   INNER JOIN dbo.ejs_ACTIVIDAD on  dbo.ejs_SUCURSAL.SUCURSALID = dbo.ejs_ACTIVIDAD.SUCURSALID
+   INNER JOIN dbo.ejs_EMPLEADO on  dbo.ejs_ACTIVIDAD.EMPLEADOID = dbo.ejs_EMPLEADO.EMPLEADOID
+go
+
+/*==============================================================*/
+/* View: ejs_vwlistadocliente                                   */
+/*==============================================================*/
+create view dbo.ejs_vwlistadocliente as
+SELECT     c.CLIENTEID, c.NIT, c.CLIENTE, c.TELEFONO, e.NOMBRES + ' ' + e.APELLIDOS AS Empleado, z.descripcion AS Zona
+FROM         dbo.ejs_CLIENTE AS c LEFT OUTER JOIN
+					  dbo.ejs_EMPLEADO AS e ON c.USERID = e.EMPLEADOID LEFT OUTER JOIN
+					  dbo.ejs_ZONAS AS z ON c.ZONAID = z.unidadid
+go
+
+alter table dbo.ejs_ACTIVIDAD
+   add constraint FK_ejs_ACTI_REFERENCE_ejs_EMPL foreign key (EMPLEADOID)
+	  references dbo.ejs_EMPLEADO (EMPLEADOID)
+go
+
+alter table dbo.ejs_ACTIVIDAD
+   add constraint FK_ejs_ACTI_REFERENCE_ejs_SUCU foreign key (SUCURSALID)
+	  references dbo.ejs_SUCURSAL (SUCURSALID)
+go
+
+alter table dbo.ejs_ALMACEN
+   add constraint FK_ejs_ALMA_RELATIONS_ejs_SUCU foreign key (SUCURSALID)
+	  references dbo.ejs_SUCURSAL (SUCURSALID)
+		 on update cascade on delete cascade
+go
+
+alter table dbo.ejs_BENEFICIARIO
+   add constraint FK_ejs_BENEFICIARIO_ejs_CLIENTE foreign key (CLIENTEID)
+	  references dbo.ejs_CLIENTE (CLIENTEID)
+go
+
+alter table dbo.ejs_DETALLE
+   add constraint FK_ejs_DETA_REFERENCE_ejs_FACT foreign key (nCodFactura)
+	  references dbo.ejs_FACTURA (nCodFactura)
+go
+
+alter table dbo.ejs_DETALLE
+   add constraint FK_ejs_DETA_REFERENCE_ejs_PROD foreign key (PRODUCTOID)
+	  references dbo.ejs_PRODUCTO (PRODUCTOID)
+go
+
+alter table dbo.ejs_FACTURA
+   add constraint FK_ejs_FACT_FK_ejs_CL_ejs_CLIE foreign key (CLIENTEID)
+	  references dbo.ejs_CLIENTE (CLIENTEID)
+go
+
+alter table dbo.ejs_FACTURA
+   add constraint FK_ejs_FACTURA_ejs_EMPLEADO foreign key (VENDEDORID)
+	  references dbo.ejs_EMPLEADO (EMPLEADOID)
+go
+
+alter table dbo.ejs_KARDEX
+   add constraint FK_ejs_KARD_RELATIONS_ejs_ALMA foreign key (ALMACENID)
+	  references dbo.ejs_ALMACEN (ALMACENID)
+		 on update cascade on delete cascade
+go
+
+alter table dbo.ejs_KARDEX
+   add constraint FK_ejs_KARD_RELATIONS_ejs_LOTE foreign key (LOTEID)
+	  references dbo.ejs_LOTE (LOTEID)
+		 on update cascade on delete cascade
+go
+
+alter table dbo.ejs_KARDEX
+   add constraint FK_ejs_KARD_RELATIONS_ejs_PROD foreign key (PRODUCTOID)
+	  references dbo.ejs_PRODUCTO (PRODUCTOID)
+		 on update cascade on delete cascade
+go
+
+alter table dbo.ejs_LISTADOPROD
+   add constraint FK_ejs_LISTADOPROD_ejs_GRUPO foreign key (GRUPOID)
+	  references dbo.ejs_GRUPO (GRUPOID)
+go
+
+alter table dbo.ejs_LISTADOPROD
+   add constraint FK_ejs_LISTADOPROD_ejs_PRODUCTO foreign key (PRODUCTOID)
+	  references dbo.ejs_PRODUCTO (PRODUCTOID)
+go
+
+alter table dbo.ejs_LOTE
+   add constraint FK_ejs_LOTE_RELATIONS_ejs_PROD foreign key (PRODUCTOID)
+	  references dbo.ejs_PRODUCTO (PRODUCTOID)
+go
+
+alter table dbo.ejs_MARCA
+   add constraint FK_ejs_MARC_RELATIONS_ejs_PROV foreign key (PROVEEDORID)
+	  references dbo.ejs_PROVEEDOR (PROVEEDORID)
+		 on update cascade on delete cascade
+go
+
+alter table dbo.ejs_NOTACREDITO
+   add constraint FK_ejs_NOTA_FK_ejs_CRED_ejs_PEDI foreign key (PEDIDOID)
+	  references dbo.ejs_PEDIDO (PEDIDOID)
+go
+
+alter table dbo.ejs_NOTADEBITO
+   add constraint FK_ejs_NOTA_FK_ejs_DEB_ejs_PEDI foreign key (PEDIDOID)
+	  references dbo.ejs_PEDIDO (PEDIDOID)
+go
+
+alter table ejs_OBJETIVODETALLE
+   add constraint FK_ejs_OBJE_FK_ejs_OB_ejs_OBJE foreign key (OBJETIVOID)
+	  references ejs_OBJETIVO (OBJETIVOID)
+go
+
+alter table dbo.ejs_PAGO
+   add constraint FK_ejs_PAGO_FK_ejs_FA_ejs_FACT foreign key (nCodFactura)
+	  references dbo.ejs_FACTURA (nCodFactura)
+go
+
+alter table dbo.ejs_PAGO
+   add constraint FK_ejs_PAGO_RELATIONS_ejs_VENDEDOR foreign key (VENDEDORID)
+	  references dbo.ejs_EMPLEADO (EMPLEADOID)
+		 on update cascade on delete cascade
+go
+
+alter table dbo.ejs_PEDIDODETALLE
+   add constraint FK_ejs_PEDI_FK_ejs_PE_ejs_PEDI foreign key (PEDIDOID)
+	  references dbo.ejs_PEDIDO (PEDIDOID)
+go
+
+alter table dbo.ejs_PRODUCTO
+   add constraint FK_ejs_PROD_FK_ejs_PE_ejs_PEDI foreign key (PEDDETALLEID)
+	  references dbo.ejs_PEDIDODETALLE (PEDDETALLEID)
+go
+
+alter table dbo.ejs_PRODUCTO
+   add constraint FK_ejs_PROD_RELATIONS_ejs_GRUP foreign key (GRUPOCODIGO)
+	  references dbo.ejs_GRUPOTERAPEUTICO (GRUPOCODIGO)
+		 on update cascade on delete cascade
+go
+
+alter table dbo.ejs_PRODUCTO
+   add constraint FK_ejs_PROD_RELATIONS_ejs_MARC foreign key (MARCAID)
+	  references dbo.ejs_MARCA (MARCAID)
+		 on update cascade on delete cascade
+go
+
+alter table dbo.ejs_PRODUCTO
+   add constraint FK_ejs_PROD_RELATIONS_ejs_PROV foreign key (PROVEEDORID)
+	  references dbo.ejs_PROVEEDOR (PROVEEDORID)
+go
+
+alter table dbo.ejs_PROFDETALLE
+   add constraint FK_ejs_PROF_FK_ejs_PR_ejs_PROD foreign key (PRODUCTOID)
+	  references dbo.ejs_PRODUCTO (PRODUCTOID)
+go
+
+alter table dbo.ejs_PROFDETALLE
+   add constraint FK_ejs_PROF_REFERENCE_ejs_PROF foreign key (PROFORMAID)
+	  references dbo.ejs_PROFORMA (PROFORMAID)
+go
+
+alter table dbo.ejs_SUCURSAL
+   add constraint FK_ejs_SUCU_RELATIONS_ejs_REGI foreign key (REGIONID)
+	  references dbo.ejs_REGION (REGIONID)
+		 on update cascade on delete cascade
+go
+
+alter table dbo.ejs_ZONAS1
+   add constraint FK_ejs_ZONAS1_ejs_ZONAS foreign key (UNIDADID)
+	  references dbo.ejs_ZONAS (unidadid)
+go
+
+
+create procedure dbo.ejs_spBuscaKardex @userid numeric,
+	@sucursalid numeric,
+	@productoid varchar (50),
+	@fechainicio date,
+	@fechafin date as
+SELECT dbo.ejs_kardex.KARDEXID,dbo.ejs_kardex.PRODUCTOID,
+dbo.ejs_KARDEX.FECHAREGISTRO, dbo.ejs_KARDEX.OBSERVACION, 
+dbo.ejs_KARDEX.PRECIOCOMPRA AS PRECIO,dbo.ejs_KARDEX.STOCKANTERIORENVASE, 
+dbo.ejs_KARDEX.STOCKACTUALENVASE, dbo.ejs_KARDEX.STOCKANTERIORB, 
+dbo.ejs_KARDEX.STOCKACTUALB, dbo.ejs_KARDEX.STOCKANTERIORR, 
+dbo.ejs_KARDEX.STOCKACTUALR,dbo.ejs_KARDEX.GLOSA 
+FROM         dbo.ejs_ALMACEN INNER JOIN
+					  dbo.ejs_KARDEX ON dbo.ejs_ALMACEN.ALMACENID = dbo.ejs_KARDEX.ALMACENID INNER JOIN
+					  dbo.ejs_SUCURSAL ON dbo.ejs_ALMACEN.SUCURSALID = dbo.ejs_SUCURSAL.SUCURSALID INNER JOIN
+					  dbo.ejs_ACTIVIDAD ON dbo.ejs_SUCURSAL.SUCURSALID = dbo.ejs_ACTIVIDAD.SUCURSALID INNER JOIN
+					  dbo.ejs_EMPLEADO ON dbo.ejs_ACTIVIDAD.EMPLEADOID = dbo.ejs_EMPLEADO.EMPLEADOID
+	where
+				dbo.ejs_EMPLEADO.USERID=@userid and
+				dbo.ejs_SUCURSAL.SUCURSALID=@sucursalid and
+				dbo.ejs_KARDEX.PRODUCTOID=@productoid and
+				(dbo.ejs_KARDEX.FECHAREGISTRO between @fechainicio and Dateadd(DAY,1,@fechafin))
+	order by dbo.ejs_KARDEX.KARDEXID
+go
+
+
+create procedure dbo.ejs_spClienteProductoConsolidado @fechainicial date, @fechafinal date as
+SELECT     TOP (100) PERCENT dbo.ejs_CLIENTE.CLIENTE, CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1024)) AS Producto, SUM(dbo.ejs_DETALLE.CANTIDAD) 
+					  AS Cantidad, SUM(dbo.ejs_DETALLE.CANTIDAD * (dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO * dbo.ejs_DETALLE.DESCUENTO)) 
+					  AS Monto
+FROM         dbo.ejs_CLIENTE INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_CLIENTE.CLIENTEID = dbo.ejs_FACTURA.CLIENTEID INNER JOIN
+					  dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura INNER JOIN
+					  dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID
+WHERE dbo.ejs_FACTURA.FECHAEMISION between @fechainicial and @fechafinal  AND  (dbo.ejs_FACTURA.ANULADO = 0)                     
+GROUP BY CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1024)), dbo.ejs_CLIENTE.CLIENTE
+ORDER BY dbo.ejs_CLIENTE.CLIENTE, Producto, Cantidad DESC
+go
+
+
+create procedure dbo.ejs_spCobrosEmpleado @empid numeric, @fechainicio date,
+	@fechafin date as
+select EMPLEADOID,NUMERO,NOMBRES + ' ' + APELLIDOS as VENDEDOR,SUM(MONTO) AS TOTAL
+FROM   dbo.ejs_FACTURA INNER JOIN
+dbo.ejs_PAGO ON dbo.ejs_FACTURA.nCodFactura= dbo.ejs_PAGO.nCodFactura INNER JOIN
+dbo.ejs_EMPLEADO ON dbo.ejs_PAGO.VENDEDORID = dbo.ejs_EMPLEADO.EMPLEADOID 
+WHERE dbo.ejs_PAGO.VENDEDORID=@empid and ejs_PAGO.FECHAPAGO between 
+@fechainicio and @fechafin AND  (dbo.ejs_FACTURA.ANULADO = 0) GROUP  BY EMPLEADOID,NUMERO,NOMBRES, APELLIDOS
+go
+
+
+create procedure dbo.ejs_spConsoPagos @fechainicial date,
+	@fechafinal date as
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	-- Insert statements for procedure here
+	SELECT DISTINCT CLIENTE, VENDEDOR, SUM(MONTOTOTAL) AS MONTOTOTAL
+FROM         (SELECT     C.CLIENTEID, C.CLIENTE, E.NOMBRES + ' ' + E.APELLIDOS AS VENDEDOR, SUM(P.MONTO) AS MONTOTOTAL, P.FECHAPAGO
+					   FROM          dbo.ejs_PAGO AS P INNER JOIN
+											  dbo.ejs_FACTURA AS F ON P.nCodFactura = F.nCodFactura INNER JOIN
+											  dbo.ejs_CLIENTE AS C ON F.CLIENTEID = C.CLIENTEID INNER JOIN
+											  dbo.ejs_EMPLEADO AS E ON P.VENDEDORID = E.EMPLEADOID
+					   WHERE      (P.FECHAPAGO >= @fechainicial) AND (P.FECHAPAGO <= @fechafinal) AND 
+						(F.ANULADO = 0)
+					   GROUP BY C.CLIENTEID, C.CLIENTE, E.NOMBRES, E.APELLIDOS, P.FECHAPAGO) AS PP
+GROUP BY CLIENTE, VENDEDOR
+END
+go
+
+
+create procedure dbo.ejs_spEmpleadoProductoConsolidado @fechainicial date, @fechafinal date as
+SELECT dbo.ejs_EMPLEADO.NOMBRES + ' ' + dbo.ejs_EMPLEADO.APELLIDOS AS EMPLEADO, 
+CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1024)) AS Producto,
+SUM(dbo.ejs_DETALLE.CANTIDAD) AS Cantidad, 
+SUM(dbo.ejs_DETALLE.CANTIDAD * 
+(dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO * dbo.ejs_DETALLE.DESCUENTO)) 
+AS Monto
+FROM dbo.ejs_CLIENTE INNER JOIN
+dbo.ejs_FACTURA ON dbo.ejs_CLIENTE.NIT = dbo.ejs_FACTURA.NIT INNER JOIN
+dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura INNER JOIN
+dbo.ejs_EMPLEADO ON dbo.ejs_FACTURA.VENDEDORID = dbo.ejs_EMPLEADO.EMPLEADOID INNER JOIN
+dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID
+WHERE (dbo.ejs_FACTURA.FECHAEMISION BETWEEN '2014-03-01' AND '2014-03-20')
+AND (dbo.ejs_FACTURA.ANULADO = 0)
+GROUP BY dbo.ejs_EMPLEADO.NOMBRES, dbo.ejs_EMPLEADO.APELLIDOS, 
+CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1024))
+ORDER BY 2, 1
+go
+
+
+create procedure dbo.ejs_spPagoConsolidado @fechainicial date,
+ @fechafinal date as
+SELECT DISTINCT CLIENTEID,CLIENTE, VENDEDOR, SUM(MONTOTOTAL) AS MONTOTOTAL
+FROM  (SELECT     C.CLIENTEID, C.CLIENTE, E.NOMBRES + ' ' + E.APELLIDOS AS VENDEDOR, SUM(P.MONTO) AS MONTOTOTAL, P.FECHAPAGO
+FROM   dbo.ejs_PAGO AS P INNER JOIN
+	 dbo.ejs_FACTURA AS F ON P.nCodFactura = F.nCodFactura INNER JOIN
+	 dbo.ejs_CLIENTE AS C ON F.CLIENTEID = C.CLIENTEID INNER JOIN
+	 dbo.ejs_EMPLEADO AS E ON P.VENDEDORID = E.EMPLEADOID
+	 WHERE      (P.FECHAPAGO >= @fechainicial) AND (P.FECHAPAGO <= @fechafinal) AND 
+	  (F.ANULADO = 0)
+GROUP BY C.CLIENTEID, C.CLIENTE, E.NOMBRES, E.APELLIDOS, P.FECHAPAGO) AS PP
+GROUP BY CLIENTEID,CLIENTE, VENDEDOR
+order by CLIENTE
+go
+
+
+create procedure dbo.ejs_spRepVentasClientes @sucursalid numeric,	
+	@fechainicio date,
+	@fechafin date as
+SELECT     DBO.ejs_CLIENTE.CLIENTEID, DBO.ejs_CLIENTE.CLIENTE, dbo.ejs_PRODUCTO.PRODUCTOID,
+		   SUM(dbo.ejs_DETALLE.CANTIDAD) AS CANTIDAD, 
+		   SUM(dbo.ejs_DETALLE.CANTIDAD*(dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO*dbo.ejs_DETALLE.DESCUENTO)) AS TOTAL           
+FROM       dbo.ejs_PRODUCTO INNER JOIN
+		   dbo.ejs_DETALLE ON dbo.ejs_PRODUCTO.PRODUCTOID = dbo.ejs_DETALLE.PRODUCTOID INNER JOIN
+		   dbo.ejs_FACTURA ON dbo.ejs_DETALLE.nCodFactura = dbo.ejs_FACTURA.nCodFactura INNER JOIN
+		   dbo.ejs_SUCURSAL ON dbo.ejs_FACTURA.SUCURSALID=dbo.ejs_SUCURSAL.SUCURSALID INNER JOIN
+		   dbo.ejs_CLIENTE ON dbo.ejs_FACTURA.NIT = dbo.ejs_CLIENTE.NIT         
+		   
+WHERE
+				dbo.ejs_SUCURSAL.SUCURSALID=@sucursalid and				
+				(dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and Dateadd(DAY,1,@fechafin)) AND
+				dbo.ejs_FACTURA.PAGADA='False' AND  (dbo.ejs_FACTURA.ANULADO = 0)             
+GROUP BY   dbo.ejs_PRODUCTO.PRODUCTOID,DBO.ejs_CLIENTE.CLIENTE,DBO.ejs_CLIENTE.CLIENTEID
+go
+
+
+create procedure dbo.ejs_spRepVentasGTerapeutico @sucursalid numeric,	
+	@fechainicio date,
+	@fechafin date as
+SELECT     DBO.ejs_GRUPOTERAPEUTICO.GRUPOCODIGO, DBO.ejs_GRUPOTERAPEUTICO.GRUPOMEDICO, dbo.ejs_PRODUCTO.PRODUCTOID,
+		   SUM(dbo.ejs_DETALLE.CANTIDAD) AS CANTIDAD, 
+		   SUM(dbo.ejs_DETALLE.CANTIDAD*(dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO*dbo.ejs_DETALLE.DESCUENTO)) AS TOTAL           
+FROM       dbo.ejs_PRODUCTO INNER JOIN
+		   dbo.ejs_DETALLE ON dbo.ejs_PRODUCTO.PRODUCTOID = dbo.ejs_DETALLE.PRODUCTOID INNER JOIN
+		   dbo.ejs_GRUPOTERAPEUTICO ON dbo.ejs_PRODUCTO.GRUPOCODIGO = dbo.ejs_GRUPOTERAPEUTICO.GRUPOCODIGO INNER JOIN
+		   dbo.ejs_FACTURA ON dbo.ejs_DETALLE.nCodFactura = dbo.ejs_FACTURA.nCodFactura INNER JOIN
+		   dbo.ejs_SUCURSAL ON dbo.ejs_FACTURA.SUCURSALID=dbo.ejs_SUCURSAL.SUCURSALID
+
+		   
+WHERE
+				dbo.ejs_SUCURSAL.SUCURSALID=@sucursalid and				
+				(dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and Dateadd(DAY,1,@fechafin)) AND
+				dbo.ejs_FACTURA.PAGADA='False' AND  (dbo.ejs_FACTURA.ANULADO = 0)             
+GROUP BY   dbo.ejs_PRODUCTO.PRODUCTOID,DBO.ejs_GRUPOTERAPEUTICO.GRUPOCODIGO, DBO.ejs_GRUPOTERAPEUTICO.GRUPOMEDICO
+go
+
+
+create procedure dbo.ejs_spRepVentasProductos @sucursalid numeric,
+	--@productoid varchar (50),
+	@fechainicio date,
+	@fechafin date as
+SELECT     dbo.ejs_PRODUCTO.PRODUCTOID,
+		   cast(dbo.ejs_PRODUCTO.DETALLES as varchar(300)) as PRODUCTO,  
+		   SUM(dbo.ejs_DETALLE.CANTIDAD) AS CANTIDAD, 
+		   SUM(dbo.ejs_DETALLE.CANTIDAD*(dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO*dbo.ejs_DETALLE.DESCUENTO)) AS TOTAL           
+FROM       dbo.ejs_PRODUCTO INNER JOIN
+		   dbo.ejs_DETALLE ON dbo.ejs_PRODUCTO.PRODUCTOID = dbo.ejs_DETALLE.PRODUCTOID INNER JOIN
+		   dbo.ejs_FACTURA ON dbo.ejs_DETALLE.nCodFactura = dbo.ejs_FACTURA.nCodFactura INNER JOIN
+		   dbo.ejs_SUCURSAL ON dbo.ejs_FACTURA.SUCURSALID=dbo.ejs_SUCURSAL.SUCURSALID           
+WHERE
+				dbo.ejs_SUCURSAL.SUCURSALID=@sucursalid and
+				--dbo.ejs_DETALLE.PRODUCTOID=@productoid and
+				(dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and Dateadd(DAY,1,@fechafin)) AND 
+				 (dbo.ejs_FACTURA.ANULADO = 0)        
+GROUP BY   dbo.ejs_PRODUCTO.PRODUCTOID, cast(dbo.ejs_PRODUCTO.DETALLES as varchar(300))
+go
+
+
+create procedure dbo.ejs_spReporteConsolidado @fechainicio date,
+ @fechafin date as
+SELECT ejs_PRODUCTO.PRODUCTOID, ejs_CLIENTE.CLIENTE, 
+cast(ejs_PRODUCTO.DETALLES as varchar(500)) as Producto,  
+SUM(dbo.ejs_DETALLE.CANTIDAD*(dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO*dbo.ejs_DETALLE.DESCUENTO)) AS TOTAL,    
+SUM(ejs_DETALLE.CANTIDAD) as cantidad   
+FROM dbo.ejs_CLIENTE INNER JOIN
+dbo.ejs_FACTURA ON dbo.ejs_CLIENTE.CLIENTEID = dbo.ejs_FACTURA.CLIENTEID INNER JOIN
+dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura INNER JOIN
+dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID
+ where   (dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and @fechafin) AND 
+  (dbo.ejs_FACTURA.ANULADO = 0)
+group by ejs_PRODUCTO.PRODUCTOID, ejs_CLIENTE.CLIENTE, cast(ejs_PRODUCTO.DETALLES as varchar(500))
+order by 2,3 asc, 4 desc
+go
+
+
+create procedure dbo.ejs_spReporteEmpleadoPorMeses @fechainicio date,
+	@fechafin date as
+SELECT    Month(dbo.ejs_FACTURA.FECHAEMISION) as mes,Year(dbo.ejs_FACTURA.FECHAEMISION) as anio, dbo.ejs_EMPLEADO.NOMBRES + ' ' + dbo.ejs_EMPLEADO.APELLIDOS as nombres ,count(dbo.ejs_FACTURA.PAGADA) as cantidad
+	FROM   dbo.ejs_EMPLEADO INNER JOIN
+					  dbo.ejs_ACTIVIDAD ON dbo.ejs_EMPLEADO.EMPLEADOID = dbo.ejs_ACTIVIDAD.EMPLEADOID INNER JOIN
+					  dbo.ejs_SUCURSAL ON dbo.ejs_ACTIVIDAD.SUCURSALID = dbo.ejs_SUCURSAL.SUCURSALID INNER JOIN
+					  dbo.ejs_REGION ON dbo.ejs_SUCURSAL.REGIONID = dbo.ejs_REGION.REGIONID INNER JOIN
+					  dbo.ejs_CLIENTE ON dbo.ejs_REGION.REGIONID = dbo.ejs_CLIENTE.REGIONID INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_CLIENTE.NIT = dbo.ejs_FACTURA.NIT                      
+	where   (dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and Dateadd(DAY,1,@fechafin)) and
+			dbo.ejs_EMPLEADO.AREA='farma_employees'	AND  (dbo.ejs_FACTURA.ANULADO = 0)   
+	Group by Month(dbo.ejs_FACTURA.FECHAEMISION),Year(dbo.ejs_FACTURA.FECHAEMISION),dbo.ejs_EMPLEADO.NOMBRES,dbo.ejs_EMPLEADO.APELLIDOS
+go
+
+
+create procedure dbo.ejs_spReporteGlobalProductos @fechainicio date,
+ @fechafin date as
+SELECT ejs_PRODUCTO.PRODUCTOID, 
+cast(ejs_PRODUCTO.DETALLES as varchar(500)) as Producto,  
+SUM(dbo.ejs_DETALLE.CANTIDAD*(dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO*dbo.ejs_DETALLE.DESCUENTO)) AS TOTAL,    
+SUM(ejs_DETALLE.CANTIDAD) as cantidad   
+FROM dbo.ejs_CLIENTE INNER JOIN
+dbo.ejs_FACTURA ON dbo.ejs_CLIENTE.CLIENTEID = dbo.ejs_FACTURA.CLIENTEID INNER JOIN
+dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura INNER JOIN
+dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID
+where   (dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and @fechafin) AND  (dbo.ejs_FACTURA.ANULADO = 0) 
+group by ejs_PRODUCTO.PRODUCTOID, cast(ejs_PRODUCTO.DETALLES as varchar(500))
+order by 2,3 asc, 4 desc
+go
+
+
+create procedure dbo.ejs_spReportePorSucursal @sucursalid int,
+	@fechainicio date,
+	@fechafin date as
+SELECT dbo.ejs_DETALLE.PRODUCTOID,cast(dbo.ejs_PRODUCTO.DETALLES as varchar(300)) as PRODUCTO,
+	 sum(dbo.ejs_detalle.CANTIDAD) as cantidad,sum(dbo.ejs_DETALLE.CANTIDAD*dbo.ejs_DETALLE.PRECIOUNITARIO) as total
+	FROM  dbo.ejs_SUCURSAL INNER JOIN
+					  dbo.ejs_REGION ON dbo.ejs_SUCURSAL.REGIONID = dbo.ejs_REGION.REGIONID INNER JOIN
+					  dbo.ejs_CLIENTE ON dbo.ejs_REGION.REGIONID = dbo.ejs_CLIENTE.REGIONID INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_CLIENTE.NIT = dbo.ejs_FACTURA.NIT INNER JOIN
+					  dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura INNER JOIN
+					  dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID	  
+	where   dbo.ejs_SUCURSAL.SUCURSALID=@sucursalid and
+			(dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and Dateadd(DAY,1,@fechafin)) AND  
+			 (dbo.ejs_FACTURA.ANULADO = 0)
+	Group by dbo.ejs_DETALLE.PRODUCTOID,cast(dbo.ejs_PRODUCTO.DETALLES as varchar(300))
+go
+
+
+create procedure dbo.ejs_spReportePreferencias @fechainicio date,
+ @fechafin date as
+SELECT ejs_PRODUCTO.PRODUCTOID, ejs_CLIENTE.CLIENTE, MONTH(ejs_FACTURA.FECHAEMISION) as MES, 
+YEAR(ejs_FACTURA.FECHAEMISION) as AÑO, 
+SUM(dbo.ejs_DETALLE.CANTIDAD*(dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO*dbo.ejs_DETALLE.DESCUENTO)) AS TOTAL,    
+cast(ejs_PRODUCTO.DETALLES as varchar(500)) as Producto, 
+
+SUM(ejs_DETALLE.CANTIDAD) as cantidad   
+FROM dbo.ejs_CLIENTE INNER JOIN
+dbo.ejs_FACTURA ON dbo.ejs_CLIENTE.CLIENTEID = dbo.ejs_FACTURA.CLIENTEID INNER JOIN
+dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura INNER JOIN
+dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID
+where   (dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and @fechafin) AND  (dbo.ejs_FACTURA.ANULADO = 0) 
+group by ejs_PRODUCTO.PRODUCTOID, ejs_CLIENTE.CLIENTE, cast(ejs_PRODUCTO.DETALLES as varchar(500)),
+MONTH(ejs_FACTURA.FECHAEMISION), YEAR(ejs_FACTURA.FECHAEMISION)
+order by 2,3
+go
+
+
+create procedure ejs_spReporteProductos @f1 date, @f2 date
+as
+select PRODUCTOID from ejs_PRODUCTO 
+go
+
+
+create procedure dbo.ejs_spReporteProductosPorMeses @fechainicio date,
+	@fechafin date as
+SELECT    Month(dbo.ejs_FACTURA.FECHAEMISION) as mes,
+	Year(dbo.ejs_FACTURA.FECHAEMISION) as Gestion,
+	dbo.ejs_DETALLE.PRODUCTOID,CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1000)) AS PRODUCTO, 
+	sum(dbo.ejs_detalle.CANTIDAD) as cantidad,
+	SUM(dbo.ejs_DETALLE.CANTIDAD*(dbo.ejs_DETALLE.PRECIOUNITARIO - dbo.ejs_DETALLE.PRECIOUNITARIO*dbo.ejs_DETALLE.DESCUENTO)) AS TOTAL    
+	FROM   dbo.ejs_FACTURA INNER JOIN
+					  dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura INNER JOIN
+					  dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID  
+	where   (dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and Dateadd(DAY,1,@fechafin)) AND 
+	 (dbo.ejs_FACTURA.ANULADO = 0)	  
+	Group by Month(dbo.ejs_FACTURA.FECHAEMISION),Year(dbo.ejs_FACTURA.FECHAEMISION),dbo.ejs_DETALLE.PRODUCTOID,CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1000))
+go
+
+
+create procedure dbo.ejs_spReporteSucursalPorMeses @fechainicio date,
+	@fechafin date as
+SELECT    Month(dbo.ejs_FACTURA.FECHAEMISION) as mes,Year(dbo.ejs_FACTURA.FECHAEMISION) as anio,dbo.ejs_SUCURSAL.SUCURSALID, sum(dbo.ejs_DETALLE.CANTIDAD*dbo.ejs_DETALLE.PRECIOUNITARIO) as total
+	FROM   dbo.ejs_SUCURSAL INNER JOIN
+					  dbo.ejs_REGION ON dbo.ejs_SUCURSAL.REGIONID = dbo.ejs_REGION.REGIONID INNER JOIN
+					  dbo.ejs_CLIENTE ON dbo.ejs_REGION.REGIONID = dbo.ejs_CLIENTE.REGIONID INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_CLIENTE.NIT = dbo.ejs_FACTURA.NIT INNER JOIN
+					  dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura                      
+	where   (dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and Dateadd(DAY,1,@fechafin)) 
+	AND  (dbo.ejs_FACTURA.ANULADO = 0) 				  
+	Group by Month(dbo.ejs_FACTURA.FECHAEMISION),Year(dbo.ejs_FACTURA.FECHAEMISION),dbo.ejs_SUCURSAL.SUCURSALID
+go
+
+
+create procedure dbo.ejs_spReporteVentas @fechainicio date,
+	@fechafin date as
+SELECT    dbo.ejs_DETALLE.PRODUCTOID,CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1000)) AS PRODUCTO, sum(dbo.ejs_detalle.CANTIDAD) as cantidad,sum(dbo.ejs_DETALLE.CANTIDAD*dbo.ejs_DETALLE.PRECIOUNITARIO) as total
+	FROM   dbo.ejs_FACTURA INNER JOIN
+					  dbo.ejs_DETALLE ON dbo.ejs_FACTURA.nCodFactura = dbo.ejs_DETALLE.nCodFactura INNER JOIN
+					  dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID  
+	where   (dbo.ejs_FACTURA.FECHAEMISION between @fechainicio and Dateadd(DAY,1,@fechafin)) and
+			dbo.ejs_FACTURA.PAGADA='True' AND  (dbo.ejs_FACTURA.ANULADO = 0) 		  
+	Group by dbo.ejs_DETALLE.PRODUCTOID,CAST(dbo.ejs_PRODUCTO.DETALLES AS varchar(1000))
+go
+
+
+create procedure dbo.ejs_spVencenMeses @fechaactual date as
+select a.LOTEID,a.COMPROBANTE, a.FECHAINGRESO, a.FECHAVCTO , a.PRODUCTOID,  b.NOMBREGENERICO, b.NOMBRECOMERCIAL
+	from ejs_LOTE a, ejs_PRODUCTO b
+	where a.PRODUCTOID = b.PRODUCTOID and   DATEDIFF(DAY , @fechaactual, a.FECHAVCTO) <= 90 and a.FECHAVCTO > @fechaactual
+go
+
+
+create procedure dbo.ejs_spVentasEmpleado @empid numeric, @fechainicio date,
+	@fechafin date as
+select EMPLEADOID,NUMERO,NOMBRES + ' ' + APELLIDOS as VENDEDOR,DETALLES,CANTIDAD,(PRECIOUNITARIO-PRECIOUNITARIO*DESCUENTO)*CANTIDAD AS TOTAL
+FROM         dbo.ejs_DETALLE INNER JOIN
+					  dbo.ejs_FACTURA ON dbo.ejs_DETALLE.nCodFactura = dbo.ejs_FACTURA.nCodFactura INNER JOIN
+					  dbo.ejs_EMPLEADO ON dbo.ejs_FACTURA.VENDEDORID = dbo.ejs_EMPLEADO.EMPLEADOID INNER JOIN
+					  dbo.ejs_PRODUCTO ON dbo.ejs_DETALLE.PRODUCTOID = dbo.ejs_PRODUCTO.PRODUCTOID
+					  WHERE dbo.ejs_FACTURA.VENDEDORID=@empid and ejs_FACTURA.FECHAEMISION between 
+					  @fechainicio and @fechafin AND  (dbo.ejs_FACTURA.ANULADO = 0)
+go
+
+
+create procedure dbo.ejs_spVentasPorVendedor @fechainicial date,
+ @fechafinal date as
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	-- Insert statements for procedure here
+	SELECT DISTINCT VENDEDOR, SUM(CANTIDAD) AS CANTIDAD, SUM(TOTAL) AS TOTAL
+FROM         (SELECT     TOP (100) PERCENT C.CLIENTEID, F.nCodFactura, E.EMPLEADOID, C.CLIENTE, E.NOMBRES + ' ' + E.APELLIDOS AS VENDEDOR, F.FECHAEMISION, 
+											  CAST(P.DETALLES AS varchar(1024)) AS PRODUCTO, D.CANTIDAD, SUM(D.CANTIDAD * (D.PRECIOUNITARIO - D.PRECIOUNITARIO * D.DESCUENTO)) 
+											  AS TOTAL
+					   FROM          dbo.ejs_PRODUCTO AS P INNER JOIN
+											  dbo.ejs_DETALLE AS D ON P.PRODUCTOID = D.PRODUCTOID INNER JOIN
+											  dbo.ejs_FACTURA AS F ON D.nCodFactura = F.nCodFactura INNER JOIN
+											  dbo.ejs_SUCURSAL AS S ON F.SUCURSALID = S.SUCURSALID INNER JOIN
+											  dbo.ejs_CLIENTE AS C ON C.CLIENTEID = F.CLIENTEID INNER JOIN
+											  dbo.ejs_EMPLEADO AS E ON F.VENDEDORID = E.EMPLEADOID
+					   WHERE      (F.FECHAEMISION >= @fechainicial) AND (F.FECHAEMISION <= @fechafinal) AND  (f.ANULADO = 0)
+					   GROUP BY C.CLIENTEID, C.CLIENTE, S.SUCURSALID, F.NUMERO, F.FECHAEMISION, CAST(P.DETALLES AS varchar(1024)), D.CANTIDAD, E.NOMBRES, E.APELLIDOS, 
+											  F.nCodFactura, E.EMPLEADOID) AS CL 
+GROUP BY VENDEDOR
+END
+go
+
+
+create procedure dbo.ejs_spVerificarStock @almacenid numeric as
+select dbo.ejs_KARDEX.PRODUCTOID,dbo.ejs_PRODUCTO.NOMBREGENERICO,
+	   dbo.ejs_PRODUCTO.NOMBRECOMERCIAL, dbo.ejs_KARDEX.STOCKACTUALENVASE, dbo.ejs_PRODUCTO.STOCKMINIMO
+	from dbo.ejs_KARDEX,dbo.ejs_PRODUCTO,dbo.ejs_LOTE
+	where dbo.ejs_KARDEX.PRODUCTOID=dbo.ejs_PRODUCTO.PRODUCTOID and
+	  dbo.ejs_LOTE.PRODUCTOID=dbo.ejs_PRODUCTO.PRODUCTOID and
+	  dbo.ejs_KARDEX.STOCKACTUALENVASE<=dbo.ejs_PRODUCTO.STOCKMINIMO and
+	  dbo.ejs_KARDEX.KARDEXID in
+		(select Max(dbo.ejs_KARDEX.KARDEXID)
+		from dbo.ejs_KARDEX
+		where dbo.ejs_KARDEX.ALMACENID=@almacenid
+		group by dbo.ejs_KARDEX.PRODUCTOID)
+	group by dbo.ejs_KARDEX.PRODUCTOID,dbo.ejs_PRODUCTO.NOMBREGENERICO,dbo.ejs_PRODUCTO.NOMBRECOMERCIAL,dbo.ejs_PRODUCTO.STOCKMINIMO, dbo.ejs_KARDEX.STOCKACTUALENVASE
+	order by dbo.ejs_KARDEX.PRODUCTOID
+go
+

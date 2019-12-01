@@ -1,0 +1,1023 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Drop FAQs Table **/
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spBuscaKardex')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spBuscaKardex
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spClienteProductoConsolidado')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spClienteProductoConsolidado
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spCobrosEmpleado')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spCobrosEmpleado
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spConsoPagos')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spConsoPagos
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spEmpleadoProductoConsolidado')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spEmpleadoProductoConsolidado
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spPagoConsolidado')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spPagoConsolidado
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spRepVentasClientes')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spRepVentasClientes
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spRepVentasGTerapeutico')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spRepVentasGTerapeutico
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spRepVentasProductos')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spRepVentasProductos
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spReporteConsolidado')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spReporteConsolidado
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spReporteEmpleadoPorMeses')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spReporteEmpleadoPorMeses
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spReporteGlobalProductos')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spReporteGlobalProductos
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spReportePorSucursal')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spReportePorSucursal
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spReportePreferencias')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spReportePreferencias
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spReporteProductos')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spReporteProductos
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spReporteProductosPorMeses')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spReporteProductosPorMeses
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spReporteSucursalPorMeses')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spReporteSucursalPorMeses
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spReporteVentas')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spReporteVentas
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spVencenMeses')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spVencenMeses
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spVentasEmpleado')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spVentasEmpleado
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spVentasPorVendedor')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spVentasPorVendedor
+go
+
+if exists (select 1
+		  from sysobjects
+		  where  id = object_id('dbo.ejs_spVerificarStock')
+		  and type in ('P','PC'))
+   drop procedure dbo.ejs_spVerificarStock
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_ACTIVIDAD') and o.name = 'FK_ejs_ACTI_REFERENCE_ejs_EMPL')
+alter table dbo.ejs_ACTIVIDAD
+   drop constraint FK_ejs_ACTI_REFERENCE_ejs_EMPL
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_ACTIVIDAD') and o.name = 'FK_ejs_ACTI_REFERENCE_ejs_SUCU')
+alter table dbo.ejs_ACTIVIDAD
+   drop constraint FK_ejs_ACTI_REFERENCE_ejs_SUCU
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_ALMACEN') and o.name = 'FK_ejs_ALMA_RELATIONS_ejs_SUCU')
+alter table dbo.ejs_ALMACEN
+   drop constraint FK_ejs_ALMA_RELATIONS_ejs_SUCU
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_BENEFICIARIO') and o.name = 'FK_ejs_BENEFICIARIO_ejs_CLIENTE')
+alter table dbo.ejs_BENEFICIARIO
+   drop constraint FK_ejs_BENEFICIARIO_ejs_CLIENTE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_DETALLE') and o.name = 'FK_ejs_DETA_REFERENCE_ejs_FACT')
+alter table dbo.ejs_DETALLE
+   drop constraint FK_ejs_DETA_REFERENCE_ejs_FACT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_DETALLE') and o.name = 'FK_ejs_DETA_REFERENCE_ejs_PROD')
+alter table dbo.ejs_DETALLE
+   drop constraint FK_ejs_DETA_REFERENCE_ejs_PROD
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_FACTURA') and o.name = 'FK_ejs_FACT_FK_ejs_CL_ejs_CLIE')
+alter table dbo.ejs_FACTURA
+   drop constraint FK_ejs_FACT_FK_ejs_CL_ejs_CLIE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_FACTURA') and o.name = 'FK_ejs_FACTURA_ejs_EMPLEADO')
+alter table dbo.ejs_FACTURA
+   drop constraint FK_ejs_FACTURA_ejs_EMPLEADO
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_KARDEX') and o.name = 'FK_ejs_KARD_RELATIONS_ejs_ALMA')
+alter table dbo.ejs_KARDEX
+   drop constraint FK_ejs_KARD_RELATIONS_ejs_ALMA
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_KARDEX') and o.name = 'FK_ejs_KARD_RELATIONS_ejs_LOTE')
+alter table dbo.ejs_KARDEX
+   drop constraint FK_ejs_KARD_RELATIONS_ejs_LOTE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_KARDEX') and o.name = 'FK_ejs_KARD_RELATIONS_ejs_PROD')
+alter table dbo.ejs_KARDEX
+   drop constraint FK_ejs_KARD_RELATIONS_ejs_PROD
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_LISTADOPROD') and o.name = 'FK_ejs_LISTADOPROD_ejs_GRUPO')
+alter table dbo.ejs_LISTADOPROD
+   drop constraint FK_ejs_LISTADOPROD_ejs_GRUPO
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_LISTADOPROD') and o.name = 'FK_ejs_LISTADOPROD_ejs_PRODUCTO')
+alter table dbo.ejs_LISTADOPROD
+   drop constraint FK_ejs_LISTADOPROD_ejs_PRODUCTO
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_LOTE') and o.name = 'FK_ejs_LOTE_RELATIONS_ejs_PROD')
+alter table dbo.ejs_LOTE
+   drop constraint FK_ejs_LOTE_RELATIONS_ejs_PROD
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_MARCA') and o.name = 'FK_ejs_MARC_RELATIONS_ejs_PROV')
+alter table dbo.ejs_MARCA
+   drop constraint FK_ejs_MARC_RELATIONS_ejs_PROV
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_NOTACREDITO') and o.name = 'FK_ejs_NOTA_FK_ejs_PE_ejs_PEDI')
+alter table dbo.ejs_NOTACREDITO
+   drop constraint FK_ejs_NOTA_FK_ejs_PE_ejs_PEDI
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_NOTADEBITO') and o.name = 'FK_ejs_NOTA_FK_ejs_NO_ejs_PEDI')
+alter table dbo.ejs_NOTADEBITO
+   drop constraint FK_ejs_NOTA_FK_ejs_NO_ejs_PEDI
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('ejs_OBJETIVODETALLE') and o.name = 'FK_ejs_OBJE_FK_ejs_OB_ejs_OBJE')
+alter table ejs_OBJETIVODETALLE
+   drop constraint FK_ejs_OBJE_FK_ejs_OB_ejs_OBJE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_PAGO') and o.name = 'FK_ejs_PAGO_FK_ejs_FA_ejs_FACT')
+alter table dbo.ejs_PAGO
+   drop constraint FK_ejs_PAGO_FK_ejs_FA_ejs_FACT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_PAGO') and o.name = 'FK_ejs_PAGO_RELATIONS_ejs_VENDEDOR')
+alter table dbo.ejs_PAGO
+   drop constraint FK_ejs_PAGO_RELATIONS_ejs_VENDEDOR
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_PEDIDODETALLE') and o.name = 'FK_ejs_PEDI_FK_ejs_PE_ejs_PEDI')
+alter table dbo.ejs_PEDIDODETALLE
+   drop constraint FK_ejs_PEDI_FK_ejs_PE_ejs_PEDI
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_PRODUCTO') and o.name = 'FK_ejs_PROD_FK_ejs_PE_ejs_PEDI')
+alter table dbo.ejs_PRODUCTO
+   drop constraint FK_ejs_PROD_FK_ejs_PE_ejs_PEDI
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_PRODUCTO') and o.name = 'FK_ejs_PROD_RELATIONS_ejs_GRUP')
+alter table dbo.ejs_PRODUCTO
+   drop constraint FK_ejs_PROD_RELATIONS_ejs_GRUP
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_PRODUCTO') and o.name = 'FK_ejs_PROD_RELATIONS_ejs_MARC')
+alter table dbo.ejs_PRODUCTO
+   drop constraint FK_ejs_PROD_RELATIONS_ejs_MARC
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_PRODUCTO') and o.name = 'FK_ejs_PROD_RELATIONS_ejs_PROV')
+alter table dbo.ejs_PRODUCTO
+   drop constraint FK_ejs_PROD_RELATIONS_ejs_PROV
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_PROFDETALLE') and o.name = 'FK_ejs_PROF_FK_ejs_PR_ejs_PROD')
+alter table dbo.ejs_PROFDETALLE
+   drop constraint FK_ejs_PROF_FK_ejs_PR_ejs_PROD
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_PROFDETALLE') and o.name = 'FK_ejs_PROF_REFERENCE_ejs_PROF')
+alter table dbo.ejs_PROFDETALLE
+   drop constraint FK_ejs_PROF_REFERENCE_ejs_PROF
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_SUCURSAL') and o.name = 'FK_ejs_SUCU_RELATIONS_ejs_REGI')
+alter table dbo.ejs_SUCURSAL
+   drop constraint FK_ejs_SUCU_RELATIONS_ejs_REGI
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('dbo.ejs_ZONAS1') and o.name = 'FK_ejs_ZONAS1_ejs_ZONAS')
+alter table dbo.ejs_ZONAS1
+   drop constraint FK_ejs_ZONAS1_ejs_ZONAS
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VWBENEFICIARIO')
+			and   type = 'V')
+   drop view dbo.ejs_VWBENEFICIARIO
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VWBuscaProducto')
+			and   type = 'V')
+   drop view dbo.ejs_VWBuscaProducto
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VWDATAKARDEX')
+			and   type = 'V')
+   drop view dbo.ejs_VWDATAKARDEX
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VWDavinci')
+			and   type = 'V')
+   drop view dbo.ejs_VWDavinci
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VWVentasPorZonas')
+			and   type = 'V')
+   drop view dbo.ejs_VWVentasPorZonas
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwClientes')
+			and   type = 'V')
+   drop view dbo.ejs_VwClientes
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwClientesEnMora')
+			and   type = 'V')
+   drop view dbo.ejs_VwClientesEnMora
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwConsoPagos')
+			and   type = 'V')
+   drop view dbo.ejs_VwConsoPagos
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwDebe')
+			and   type = 'V')
+   drop view dbo.ejs_VwDebe
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwCuentasClientes')
+			and   type = 'V')
+   drop view dbo.ejs_VwCuentasClientes
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwDeudas')
+			and   type = 'V')
+   drop view dbo.ejs_VwDeudas
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwDeudas1')
+			and   type = 'V')
+   drop view dbo.ejs_VwDeudas1
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwDeudasReporte')
+			and   type = 'V')
+   drop view dbo.ejs_VwDeudasReporte
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwHaber')
+			and   type = 'V')
+   drop view dbo.ejs_VwHaber
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwPagos')
+			and   type = 'V')
+   drop view dbo.ejs_VwPagos
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwProductoPedido')
+			and   type = 'V')
+   drop view dbo.ejs_VwProductoPedido
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwRepVentasClientes')
+			and   type = 'V')
+   drop view dbo.ejs_VwRepVentasClientes
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwRepVentasGTerapeutico')
+			and   type = 'V')
+   drop view dbo.ejs_VwRepVentasGTerapeutico
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwRepVentasProductos')
+			and   type = 'V')
+   drop view dbo.ejs_VwRepVentasProductos
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwReporteKardex')
+			and   type = 'V')
+   drop view dbo.ejs_VwReporteKardex
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwReporteProductos')
+			and   type = 'V')
+   drop view dbo.ejs_VwReporteProductos
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwSoloClientes')
+			and   type = 'V')
+   drop view dbo.ejs_VwSoloClientes
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_VwVentasPorVendedor')
+			and   type = 'V')
+   drop view dbo.ejs_VwVentasPorVendedor
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_vwBuscaKardex')
+			and   type = 'V')
+   drop view dbo.ejs_vwBuscaKardex
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_vwlistadocliente')
+			and   type = 'V')
+   drop view dbo.ejs_vwlistadocliente
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_ACTIVIDAD')
+			and   name  = 'ACTIVIDAD_PK_ID'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_ACTIVIDAD.ACTIVIDAD_PK_ID
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_ACTIVIDAD')
+			and   type = 'U')
+   drop table dbo.ejs_ACTIVIDAD
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_ALMACEN')
+			and   name  = 'ALMACEN_PK_ID'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_ALMACEN.ALMACEN_PK_ID
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_ALMACEN')
+			and   type = 'U')
+   drop table dbo.ejs_ALMACEN
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_BENEFICIARIO')
+			and   name  = 'BENEFICIARIO_PK_ID'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_BENEFICIARIO.BENEFICIARIO_PK_ID
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_BENEFICIARIO')
+			and   type = 'U')
+   drop table dbo.ejs_BENEFICIARIO
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_CLIENTE')
+			and   name  = 'PK__ejs_CLIE_PK_ID'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_CLIENTE.PK__ejs_CLIE_PK_ID
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_CLIENTE')
+			and   type = 'U')
+   drop table dbo.ejs_CLIENTE
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_DETALLE')
+			and   name  = 'PK_ejs_DETALLE'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_DETALLE.PK_ejs_DETALLE
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_DETALLE')
+			and   type = 'U')
+   drop table dbo.ejs_DETALLE
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_EMPLEADO')
+			and   name  = 'PK_ejs_EMPLEADO'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_EMPLEADO.PK_ejs_EMPLEADO
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_EMPLEADO')
+			and   type = 'U')
+   drop table dbo.ejs_EMPLEADO
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_FACTURA')
+			and   name  = 'PK_ejs_FACTURAID'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_FACTURA.PK_ejs_FACTURAID
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_FACTURA')
+			and   type = 'U')
+   drop table dbo.ejs_FACTURA
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_GRUPO')
+			and   name  = 'PK_ejs_GRUPO'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_GRUPO.PK_ejs_GRUPO
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_GRUPO')
+			and   type = 'U')
+   drop table dbo.ejs_GRUPO
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_GRUPOTERAPEUTICO')
+			and   name  = 'PK_ejs_GRUPOTERAPEUTICO'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_GRUPOTERAPEUTICO.PK_ejs_GRUPOTERAPEUTICO
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_GRUPOTERAPEUTICO')
+			and   type = 'U')
+   drop table dbo.ejs_GRUPOTERAPEUTICO
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_KARDEX')
+			and   name  = 'PK_ejs_KARDEX'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_KARDEX.PK_ejs_KARDEX
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_KARDEX')
+			and   type = 'U')
+   drop table dbo.ejs_KARDEX
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_LISTADOPROD')
+			and   name  = 'PK_ejs_LISTADOPROD'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_LISTADOPROD.PK_ejs_LISTADOPROD
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_LISTADOPROD')
+			and   type = 'U')
+   drop table dbo.ejs_LISTADOPROD
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_LOG')
+			and   name  = 'PK_ejs_LOG'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_LOG.PK_ejs_LOG
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_LOG')
+			and   type = 'U')
+   drop table dbo.ejs_LOG
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_LOTE')
+			and   name  = 'PK_ejs_LOTE'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_LOTE.PK_ejs_LOTE
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_LOTE')
+			and   type = 'U')
+   drop table dbo.ejs_LOTE
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_MARCA')
+			and   name  = 'PK_ejs_MARCA'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_MARCA.PK_ejs_MARCA
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_MARCA')
+			and   type = 'U')
+   drop table dbo.ejs_MARCA
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_NOTACREDITO')
+			and   name  = 'PK_ejs_NOTACREDITO'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_NOTACREDITO.PK_ejs_NOTACREDITO
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_NOTACREDITO')
+			and   type = 'U')
+   drop table dbo.ejs_NOTACREDITO
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_NOTADEBITO')
+			and   name  = 'PK_ejs_NOTADEBITO'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_NOTADEBITO.PK_ejs_NOTADEBITO
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_NOTADEBITO')
+			and   type = 'U')
+   drop table dbo.ejs_NOTADEBITO
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('ejs_OBJETIVO')
+			and   name  = 'PK_OBJETIVO_ID'
+			and   indid > 0
+			and   indid < 255)
+   drop index ejs_OBJETIVO.PK_OBJETIVO_ID
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('ejs_OBJETIVO')
+			and   type = 'U')
+   drop table ejs_OBJETIVO
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('ejs_OBJETIVODETALLE')
+			and   name  = 'ejs_OBJETIVODETALLE_ID'
+			and   indid > 0
+			and   indid < 255)
+   drop index ejs_OBJETIVODETALLE.ejs_OBJETIVODETALLE_ID
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('ejs_OBJETIVODETALLE')
+			and   type = 'U')
+   drop table ejs_OBJETIVODETALLE
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_PAGO')
+			and   name  = 'PK_ejs_PAGO'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_PAGO.PK_ejs_PAGO
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_PAGO')
+			and   type = 'U')
+   drop table dbo.ejs_PAGO
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_PEDIDO')
+			and   name  = 'PK_PEDIDO_ID'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_PEDIDO.PK_PEDIDO_ID
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_PEDIDO')
+			and   type = 'U')
+   drop table dbo.ejs_PEDIDO
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_PEDIDODETALLE')
+			and   name  = 'PK_ejs_PEDIDODETALLE'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_PEDIDODETALLE.PK_ejs_PEDIDODETALLE
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_PEDIDODETALLE')
+			and   type = 'U')
+   drop table dbo.ejs_PEDIDODETALLE
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_PRODUCTO')
+			and   name  = 'PK_ejs_PRODUCTO'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_PRODUCTO.PK_ejs_PRODUCTO
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_PRODUCTO')
+			and   type = 'U')
+   drop table dbo.ejs_PRODUCTO
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_PROFDETALLE')
+			and   name  = 'PK_ejs_PROFDETALLE'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_PROFDETALLE.PK_ejs_PROFDETALLE
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_PROFDETALLE')
+			and   type = 'U')
+   drop table dbo.ejs_PROFDETALLE
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_PROFORMA')
+			and   name  = 'PK_ejs_PROFORMA'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_PROFORMA.PK_ejs_PROFORMA
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_PROFORMA')
+			and   type = 'U')
+   drop table dbo.ejs_PROFORMA
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_PROVEEDOR')
+			and   name  = 'PK_ejs_PROVEEDOR'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_PROVEEDOR.PK_ejs_PROVEEDOR
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_PROVEEDOR')
+			and   type = 'U')
+   drop table dbo.ejs_PROVEEDOR
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_REGION')
+			and   name  = 'PK_ejs_REGION'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_REGION.PK_ejs_REGION
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_REGION')
+			and   type = 'U')
+   drop table dbo.ejs_REGION
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_SNIDATA')
+			and   name  = 'PK_ejs_SNIDATA'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_SNIDATA.PK_ejs_SNIDATA
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_SNIDATA')
+			and   type = 'U')
+   drop table dbo.ejs_SNIDATA
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_SUCURSAL')
+			and   name  = 'PK_ejs_SUCURSAL'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_SUCURSAL.PK_ejs_SUCURSAL
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_SUCURSAL')
+			and   type = 'U')
+   drop table dbo.ejs_SUCURSAL
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_ZONAS')
+			and   name  = 'PK_ejs_ZONAS'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_ZONAS.PK_ejs_ZONAS
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_ZONAS')
+			and   type = 'U')
+   drop table dbo.ejs_ZONAS
+go
+
+if exists (select 1
+			from  sysindexes
+		   where  id    = object_id('dbo.ejs_ZONAS1')
+			and   name  = 'ejs_ZONAS1_PK'
+			and   indid > 0
+			and   indid < 255)
+   drop index dbo.ejs_ZONAS1.ejs_ZONAS1_PK
+go
+
+if exists (select 1
+			from  sysobjects
+		   where  id = object_id('dbo.ejs_ZONAS1')
+			and   type = 'U')
+   drop table dbo.ejs_ZONAS1
+go

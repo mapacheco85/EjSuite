@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>Editar Datos Empresa</value>
+  </data>
+  <data name="ajusteprecios.Description" xml:space="preserve">
+    <value>Permite realizar un ajuste de precios a todos los productos de una Marca o Proveedor</value>
+  </data>
+  <data name="ajusteprecios.Image" xml:space="preserve">
+    <value>ico_domain_names48.gif</value>
+  </data>
+  <data name="ajusteprecios.Title" xml:space="preserve">
+    <value>Ajuste de Precios</value>
+  </data>
+  <data name="ajusteventas.Description" xml:space="preserve">
+    <value>Ajustes/Anulaciones de facturas incorrectamente impresas</value>
+  </data>
+  <data name="ajusteventas.Image" xml:space="preserve">
+    <value>LotPapaers.gif</value>
+  </data>
+  <data name="ajusteventas.Title" xml:space="preserve">
+    <value>Ajustes de Facturas</value>
+  </data>
+  <data name="android.Description" xml:space="preserve">
+    <value>Reimpresion de Facturas sincronizadas</value>
+  </data>
+  <data name="android.Image" xml:space="preserve">
+    <value>ico_gm_chat48.gif</value>
+  </data>
+  <data name="android.Title" xml:space="preserve">
+    <value>Reimpresión de Facturas</value>
+  </data>
+  <data name="asignaciones.Description" xml:space="preserve">
+    <value>Gestión de regionales, sucursales y sus respectivos almacenes</value>
+  </data>
+  <data name="asignaciones.Image" xml:space="preserve">
+    <value>compass.gif</value>
+  </data>
+  <data name="asignaciones.Title" xml:space="preserve">
+    <value>Regiones, Sucursales y Almacenes</value>
+  </data>
+  <data name="beneficiarios.Description" xml:space="preserve">
+    <value>Registro de beneficiarios de las facturas</value>
+  </data>
+  <data name="beneficiarios.Image" xml:space="preserve">
+    <value>groups.gif</value>
+  </data>
+  <data name="beneficiarios.Title" xml:space="preserve">
+    <value>Gestión de Beneficiarios</value>
+  </data>
+  <data name="bienvenido.Description" xml:space="preserve">
+    <value>Sistema de Almacenes, Ventas y Cobros de DyR Distribuidores</value>
+  </data>
+  <data name="bienvenido.Image" xml:space="preserve">
+    <value>invoice.png</value>
+  </data>
+  <data name="bienvenido.Title" xml:space="preserve">
+    <value>Bienvenido al Sistema EjSuite</value>
+  </data>
+  <data name="clientemora.Description" xml:space="preserve">
+    <value>Control de los clientes en mora</value>
+  </data>
+  <data name="clientemora.Image" xml:space="preserve">
+    <value>tasks.gif</value>
+  </data>
+  <data name="clientemora.Title" xml:space="preserve">
+    <value>Clientes en Mora</value>
+  </data>
+  <data name="clientes.Description" xml:space="preserve">
+    <value>Creación de nuevos clientes con sus respectivos vendedores</value>
+  </data>
+  <data name="clientes.Image" xml:space="preserve">
+    <value>ico_user_sr.gif</value>
+  </data>
+  <data name="clientes.Title" xml:space="preserve">
+    <value>Gestios de Clientes/Representantes</value>
+  </data>
+  <data name="comisiones.Description" xml:space="preserve">
+    <value>Control de las comisiones para los vendedores y cobradores</value>
+  </data>
+  <data name="comisiones.Image" xml:space="preserve">
+    <value>language.gif</value>
+  </data>
+  <data name="comisiones.Title" xml:space="preserve">
+    <value>Comisiones de Ventas</value>
+  </data>
+  <data name="cotizacion.Description" xml:space="preserve">
+    <value>Cotización de productos para licitaciones y para clientes mayoristas</value>
+  </data>
+  <data name="cotizacion.Image" xml:space="preserve">
+    <value>work.gif</value>
+  </data>
+  <data name="cotizacion.Title" xml:space="preserve">
+    <value>Cotizaciones</value>
+  </data>
+  <data name="datossni.Description" xml:space="preserve">
+    <value>Gestión de dosificaciones semestrales de Impuestos Nacionales</value>
+  </data>
+  <data name="datossni.Image" xml:space="preserve">
+    <value>signatures.gif</value>
+  </data>
+  <data name="datossni.Title" xml:space="preserve">
+    <value>Dosificación Impuestos Nacionales</value>
+  </data>
+  <data name="importpedido.Description" xml:space="preserve">
+    <value>Facturar Ventas al Crédito</value>
+  </data>
+  <data name="importpedido.Image" xml:space="preserve">
+    <value>mobile.gif</value>
+  </data>
+  <data name="importpedido.Title" xml:space="preserve">
+    <value>Facturación de Créditos</value>
+  </data>
+  <data name="impuestos.Description" xml:space="preserve">
+    <value>Listado de facturas validas por fecha</value>
+  </data>
+  <data name="impuestos.Image" xml:space="preserve">
+    <value>templates.gif</value>
+  </data>
+  <data name="impuestos.Title" xml:space="preserve">
+    <value>Impuestos - Listas de Facturas</value>
+  </data>
+  <data name="ingresos.Description" xml:space="preserve">
+    <value>Ingreso de nuevos productos al almacen</value>
+  </data>
+  <data name="ingresos.Image" xml:space="preserve">
+    <value>boxx.gif</value>
+  </data>
+  <data name="ingresos.Title" xml:space="preserve">
+    <value>Gestión de Compras</value>
+  </data>
+  <data name="kardex.Description" xml:space="preserve">
+    <value>Control de Kardex de productos</value>
+  </data>
+  <data name="kardex.Image" xml:space="preserve">
+    <value>documentation.gif</value>
+  </data>
+  <data name="kardex.Title" xml:space="preserve">
+    <value>Kardex de Almacenes</value>
+  </data>
+  <data name="listagrupos.Description" xml:space="preserve">
+    <value>Listado y grupos de productos</value>
+  </data>
+  <data name="listagrupos.Image" xml:space="preserve">
+    <value>notes.gif</value>
+  </data>
+  <data name="listagrupos.Title" xml:space="preserve">
+    <value>Gestión de Listas y Grupos de Productos</value>
+  </data>
+  <data name="objetivosmes.Description" xml:space="preserve">
+    <value>Los objetivos por vendedor por mes para evaluacion</value>
+  </data>
+  <data name="objetivosmes.Image" xml:space="preserve">
+    <value>gears_preferences.gif</value>
+  </data>
+  <data name="objetivosmes.Title" xml:space="preserve">
+    <value>Objetivos Mensuales por vendedores </value>
+  </data>
+  <data name="pagoscheque.Description" xml:space="preserve">
+    <value>Pagos de clientes por cheque</value>
+  </data>
+  <data name="pagoscheque.Image" xml:space="preserve">
+    <value>checkedmail.gif</value>
+  </data>
+  <data name="pagoscheque.Title" xml:space="preserve">
+    <value>Pagos con Cheque</value>
+  </data>
+  <data name="pagoscuenta.Description" xml:space="preserve">
+    <value>Pagos en efectivo del cliente</value>
+  </data>
+  <data name="pagoscuenta.Image" xml:space="preserve">
+    <value>cabinet4.gif</value>
+  </data>
+  <data name="pagoscuenta.Title" xml:space="preserve">
+    <value>Pagos a Cuenta</value>
+  </data>
+  <data name="pedfacturacion.Description" xml:space="preserve">
+    <value>Facturación de pedidos </value>
+  </data>
+  <data name="pedfacturacion.Image" xml:space="preserve">
+    <value>ico_gm_chat48.gif</value>
+  </data>
+  <data name="pedfacturacion.Title" xml:space="preserve">
+    <value>Facturación de Pedidos</value>
+  </data>
+  <data name="pedidos.Description" xml:space="preserve">
+    <value>Nuevos pedidos de insumos</value>
+  </data>
+  <data name="pedidos.Image" xml:space="preserve">
+    <value>documents.gif</value>
+  </data>
+  <data name="pedidos.Title" xml:space="preserve">
+    <value>Pedidos Nuevos Productos</value>
+  </data>
+  <data name="productos.Description" xml:space="preserve">
+    <value>Registro de nuevos productos y grupos terapeúticos</value>
+  </data>
+  <data name="productos.Image" xml:space="preserve">
+    <value>harddrive.gif</value>
+  </data>
+  <data name="productos.Title" xml:space="preserve">
+    <value>Gestión de Productos</value>
+  </data>
+  <data name="proveedor.Description" xml:space="preserve">
+    <value>Adición y modificación de proveedores y marcas</value>
+  </data>
+  <data name="proveedor.Image" xml:space="preserve">
+    <value>HR.gif</value>
+  </data>
+  <data name="proveedor.Title" xml:space="preserve">
+    <value>Gestión de Proveedores y Marcas</value>
+  </data>
+  <data name="repcobros.Description" xml:space="preserve">
+    <value>Estado de los cobros a los clientes</value>
+  </data>
+  <data name="repcobros.Image" xml:space="preserve">
+    <value>poll.gif</value>
+  </data>
+  <data name="repcobros.Title" xml:space="preserve">
+    <value>Reporte de Cobranzas</value>
+  </data>
+  <data name="repdavinci.Description" xml:space="preserve">
+    <value>Reporte general de la empresa para el Sistema Da Vinci</value>
+  </data>
+  <data name="repdavinci.Image" xml:space="preserve">
+    <value>factura.png</value>
+  </data>
+  <data name="repdavinci.Title" xml:space="preserve">
+    <value>Reporte Da Vinci</value>
+  </data>
+  <data name="repextracto.Description" xml:space="preserve">
+    <value>Extracto de cuentas de los clientes</value>
+  </data>
+  <data name="repextracto.Image" xml:space="preserve">
+    <value>stats7.gif</value>
+  </data>
+  <data name="repextracto.Title" xml:space="preserve">
+    <value>Extracto de Cuentas</value>
+  </data>
+  <data name="repfichas.Description" xml:space="preserve">
+    <value>Ficha de deudas de los clientes</value>
+  </data>
+  <data name="repfichas.Image" xml:space="preserve">
+    <value>ico_user_r.gif</value>
+  </data>
+  <data name="repfichas.Title" xml:space="preserve">
+    <value>Fichas de Deudas</value>
+  </data>
+  <data name="repgeneral.Description" xml:space="preserve">
+    <value>Reporte general de la empresa</value>
+  </data>
+  <data name="repgeneral.Image" xml:space="preserve">
+    <value>markread.gif</value>
+  </data>
+  <data name="repgeneral.Title" xml:space="preserve">
+    <value>Reportes Generales</value>
+  </data>
+  <data name="reportekardex.Description" xml:space="preserve">
+    <value>Kardex de deudas del cliente</value>
+  </data>
+  <data name="reportekardex.Image" xml:space="preserve">
+    <value>filer.gif</value>
+  </data>
+  <data name="reportekardex.Title" xml:space="preserve">
+    <value>Kardex de Cuentas Por Cobrar</value>
+  </data>
+  <data name="reportes3d.Description" xml:space="preserve">
+    <value>Reportes de Indicadores, Tortas y Barras de Crecimientos</value>
+  </data>
+  <data name="reportes3d.Image" xml:space="preserve">
+    <value>poll.gif</value>
+  </data>
+  <data name="reportes3d.Title" xml:space="preserve">
+    <value>Reportes en 3D para gerencia</value>
+  </data>
+  <data name="repsucursal.Description" xml:space="preserve">
+    <value>Reportes especificos por sucursal</value>
+  </data>
+  <data name="repsucursal.Image" xml:space="preserve">
+    <value>archive.gif</value>
+  </data>
+  <data name="repsucursal.Title" xml:space="preserve">
+    <value>Reportes por Sucursal</value>
+  </data>
+  <data name="repvendedores.Description" xml:space="preserve">
+    <value>Reporte general de la empresa y las cuotas de vendedores</value>
+  </data>
+  <data name="repvendedores.Image" xml:space="preserve">
+    <value>factura.png</value>
+  </data>
+  <data name="repvendedores.Title" xml:space="preserve">
+    <value>Reporte de Vendedores</value>
+  </data>
+  <data name="repventas.Description" xml:space="preserve">
+    <value>Reporte de ventas diarias </value>
+  </data>
+  <data name="repventas.Image" xml:space="preserve">
+    <value>main_ch_acc.gif</value>
+  </data>
+  <data name="repventas.Title" xml:space="preserve">
+    <value>Reporte Diario de Ventas</value>
+  </data>
+  <data name="traspasos.Description" xml:space="preserve">
+    <value>Traspasos entre almacenes</value>
+  </data>
+  <data name="traspasos.Image" xml:space="preserve">
+    <value>faq15244_WBIcon.gif</value>
+  </data>
+  <data name="traspasos.Title" xml:space="preserve">
+    <value>Traslados de Almacenes</value>
+  </data>
+  <data name="valeconsumo.Description" xml:space="preserve">
+    <value>Vales de consumo para compensar saldos</value>
+  </data>
+  <data name="valeconsumo.Image" xml:space="preserve">
+    <value>delivery-faulty.gif</value>
+  </data>
+  <data name="valeconsumo.Title" xml:space="preserve">
+    <value>Bajas y Mermas</value>
+  </data>
+  <data name="vencidos.Description" xml:space="preserve">
+    <value>Control de productos vencidos y bajos de stock</value>
+  </data>
+  <data name="vencidos.Image" xml:space="preserve">
+    <value>calendar.gif</value>
+  </data>
+  <data name="vencidos.Title" xml:space="preserve">
+    <value>Control de Vencimientos</value>
+  </data>
+  <data name="vendedores.Description" xml:space="preserve">
+    <value>Registros de vendedores y asignaciones a las sucursales</value>
+  </data>
+  <data name="vendedores.Image" xml:space="preserve">
+    <value>cat_foru.gif</value>
+  </data>
+  <data name="vendedores.Title" xml:space="preserve">
+    <value>Gestion del Personal</value>
+  </data>
+  <data name="ventasporzona.Description" xml:space="preserve">
+    <value>Reporte General de Ventas Por Vendedor</value>
+  </data>
+  <data name="ventasporzona.Image" xml:space="preserve">
+    <value>sketch2.gif</value>
+  </data>
+  <data name="ventasporzona.Title" xml:space="preserve">
+    <value>Ventas por Vendedor</value>
+  </data>
+  <data name="zonas.Description" xml:space="preserve">
+    <value>Registros de zonas de clientes</value>
+  </data>
+  <data name="zonas.Image" xml:space="preserve">
+    <value>templates.gif</value>
+  </data>
+  <data name="zonas.Title" xml:space="preserve">
+    <value>Gestión de Zonas</value>
+  </data>
+</root>
